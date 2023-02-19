@@ -4,7 +4,7 @@ import Pages.MyAccountPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest{
+public class loginTest extends BaseTest{
     @Test
     public void LoginTest(){
         headPage.clickLoginButton();
