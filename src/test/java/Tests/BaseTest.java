@@ -1,9 +1,7 @@
 package Tests;
 
-import Pages.AuthenticationPage;
-import Pages.CreatAccountPage;
-import Pages.HeadPage;
-import Pages.MyAccountPage;
+import Modal.BaseModal;
+import Pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +17,10 @@ public abstract class BaseTest {
     protected HeadPage headPage;
     protected CreatAccountPage creatAccountPage;
     protected MyAccountPage myAccountPage;
+    protected WomenPage womenPage;
+    protected ProductDetailsPage productDetailsPage;
+    protected CardPage cardPage;
+    protected BaseModal baseModal;
 
     @Parameters({"browser"})
     @BeforeClass(alwaysRun = true)
@@ -40,6 +42,10 @@ public abstract class BaseTest {
        headPage = new HeadPage(driver);
        creatAccountPage = new CreatAccountPage(driver);
        myAccountPage = new MyAccountPage(driver);
+       womenPage = new WomenPage(driver);
+       productDetailsPage = new ProductDetailsPage(driver);
+       cardPage = new CardPage(driver);
+       baseModal = new BaseModal(driver);
 
         testContext.setAttribute("driver", driver);
 

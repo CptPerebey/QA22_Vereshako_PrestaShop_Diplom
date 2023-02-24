@@ -22,8 +22,9 @@ public class HeadPage extends BasePage{
     private static final By ITEM_ON_HEAD_LINK = By.xpath("//ul[@id='homefeatured']//a[@class='product-name']");
     private static final By POPULAR_BUTTON= By.xpath("//*[@class='homefeatured']");
     private static final By HEADLINER_BUTTON = By.xpath("//*[@class='blockbestsellers']");
-    private final By PRODUCT_PRICE_LOKATOR = By.cssSelector("#our_price_display");
-    protected By WOMEN_BUTTON = By.cssSelector(".sf-with-ul[title='Women']");
+    private static final By PRODUCT_PRICE_LOKATOR = By.cssSelector("#our_price_display");
+    private static final By WOMEN_BUTTON = By.cssSelector(".sf-with-ul[title='Women']");
+    private static final By CARD_BUTTON = By.xpath("//*[@class='shopping_cart']/a");
 
 
     public void clickLoginButton(){
@@ -44,14 +45,18 @@ public class HeadPage extends BasePage{
     public void  selectSortingOrderOption2 (String optionName) {
         if (optionName == "Popular") {
             clickPopularButton();
-        }
-        if (optionName == "HeadLiner") {
+        }else if (optionName == "HeadLiner") {
             clickHeadLinerButton();
         }
     }
     public void clickWomenButton() {
         driver.findElement(WOMEN_BUTTON).click();
     }
+
+    public void clickCardButton(){
+        driver.findElement(CARD_BUTTON).click();
+    }
+
 
 
 

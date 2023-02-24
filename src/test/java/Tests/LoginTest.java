@@ -4,9 +4,9 @@ import Pages.MyAccountPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class loginTest extends BaseTest{
+public class LoginTest extends BaseTest{
     @Test
-    public void LoginTest(){
+    public void loginTest(){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput("Sobaka212@mail.ru");
         authenticationPage.setLoginPasswordInput("qwe123qwe123");
