@@ -36,4 +36,26 @@ public class CardTests extends BaseTest {
         Assert.assertEquals(cardPage.getItemPrice(), 0);
 
     }
+
+    @Test
+    public void buyItem() throws InterruptedException {
+        String itemName = "Blouse";
+        headPage.clickLoginButton();
+        authenticationPage.setLoginEmailInput("Sobaka212@mail.ru");
+        authenticationPage.setLoginPasswordInput("qwe123qwe123");
+        authenticationPage.clickSignInButton();
+        headPage.clickWomenButton();
+        womenPage.getProductContainerByName(itemName).click();
+        productDetailsPage.addToCardItem();
+        womenPage.clickCloseWindow();
+        headPage.clickCardButton();
+        cardPage.clickProcessedToCheckoutButton();
+        Thread.sleep(2000);
+        cardPage.clickProcessedToCheckoutButtonOnAddressStep();
+        cardPage.clickAgreeWithDeliveryButton();
+        Thread.sleep(2000);
+        cardPage.clickProcessedToCheckoutButton();
+        Assert.assertEquals(cardPage.getEndMassage(),"No payment modules have been installed.");
+
+    }
 }
