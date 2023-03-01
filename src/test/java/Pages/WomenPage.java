@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -63,6 +64,14 @@ public class WomenPage extends BasePage{
     public  void waitDownloadItem(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PRODUCT_NAME_SELECTOR));
+    }
+    public void clickItemByNameWithAction(String name){
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(getProductContainerByName(name))
+                .click()
+                .build()
+                .perform();
     }
 
 }

@@ -3,10 +3,8 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.DataProvider;
+import org.openqa.selenium.interactions.Actions;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +23,9 @@ public class HeadPage extends BasePage{
     private static final By PRODUCT_PRICE_LOKATOR = By.cssSelector("#our_price_display");
     private static final By WOMEN_BUTTON = By.cssSelector(".sf-with-ul[title='Women']");
     private static final By CARD_BUTTON = By.xpath("//*[@class='shopping_cart']/a");
+    private static final By SEARCH_INPUT = By.id("search_query_top");
+    private static final By SEARCH_BUTTON = By.xpath("//*[@class='btn btn-default button-search']");
+    private static final By MY_ACCOUNT_BUTTON = By.cssSelector(".account");
 
 
     public void clickLoginButton(){
@@ -42,7 +43,7 @@ public class HeadPage extends BasePage{
         List<String> allListItemName = listItemName.stream().map(WebElement::getText).collect(Collectors.toList());
         return allListItemName;
     }
-    public void  selectSortingOrderOption2 (String optionName) {
+    public void selectSortingOrderOption(String optionName) {
         if (optionName == "Popular") {
             clickPopularButton();
         }else if (optionName == "HeadLiner") {
@@ -55,6 +56,19 @@ public class HeadPage extends BasePage{
 
     public void clickCardButton(){
         driver.findElement(CARD_BUTTON).click();
+    }
+    public void setSearchInput(String itemName){
+        driver.findElement(SEARCH_INPUT).sendKeys(itemName);
+    }
+    public void clickSearchButton(){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(SEARCH_BUTTON))
+                .click()
+                .build()
+                .perform();
+    }
+    public void clickMyAccountButton(){
+        driver.findElement(MY_ACCOUNT_BUTTON).click();
     }
 
 

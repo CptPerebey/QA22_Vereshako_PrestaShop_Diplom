@@ -21,6 +21,7 @@ public abstract class BaseTest {
     protected ProductDetailsPage productDetailsPage;
     protected CardPage cardPage;
     protected BaseModal baseModal;
+    protected WishListPage wishListPage;
 
     @Parameters({"browser"})
     @BeforeClass(alwaysRun = true)
@@ -46,6 +47,7 @@ public abstract class BaseTest {
        productDetailsPage = new ProductDetailsPage(driver);
        cardPage = new CardPage(driver);
        baseModal = new BaseModal(driver);
+       wishListPage = new WishListPage(driver);
 
         testContext.setAttribute("driver", driver);
 

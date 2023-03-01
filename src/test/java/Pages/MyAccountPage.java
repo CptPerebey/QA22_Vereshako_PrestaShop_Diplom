@@ -10,9 +10,14 @@ public class MyAccountPage extends BasePage{
 
 
     private final static By MY_ACCOUNT_MASSAGE = By.xpath("//*[@class='info-account']");
+    private final static By MY_WISHLIST_BUTTON = By.xpath("//*[text()='Мои списки покупок']");
 
 
     public static String getAccountMassage(){
       return driver.findElement(MY_ACCOUNT_MASSAGE).getText();
     }
+    public void clickMyWishListButton(){
+        driver.findElement(MY_WISHLIST_BUTTON).click();
+    }
+
 }
