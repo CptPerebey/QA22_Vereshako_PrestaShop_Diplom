@@ -54,19 +54,24 @@ public class CardTests extends BaseTest {
     }
     @Test
     public void addItemToWishList() {
-        String name = "Blouse";
+        String firstItemNameTest = "Blouse";
+        String secondItemNameTest = "Faded Short Sleeve T-shirts";
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput("Sobaka212@mail.ru");
         authenticationPage.setLoginPasswordInput("qwe123qwe123");
         authenticationPage.clickSignInButton();
         headPage.clickWomenButton();
-        womenPage.clickItemByNameWithAction(name);
+        womenPage.clickItemByNameWithAction(firstItemNameTest);
+        productDetailsPage.clickAddToWishListButton();
+        productDetailsPage.clickCloseButtonAfterAddToWishL();
+        headPage.clickWomenButton();
+        womenPage.clickItemByNameWithAction(secondItemNameTest);
         productDetailsPage.clickAddToWishListButton();
         productDetailsPage.clickCloseButtonAfterAddToWishL();
         headPage.clickMyAccountButton();
         myAccountPage.clickMyWishListButton();
         wishListPage.clickMyWishListButton();
-        Assert.assertEquals(wishListPage.getSortingListItemName(),name);
+        Assert.assertEquals(wishListPage.getSortingListItemName(), Arrays.asList("Faded Short Sleeve T-shirts","Blouse"));
 
     }
 }
