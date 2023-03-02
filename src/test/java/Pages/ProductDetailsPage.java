@@ -32,7 +32,7 @@ public class ProductDetailsPage extends BasePage{
     public boolean checkAddToCard(){
      return   driver.findElement(CARD_MASSAGE).isDisplayed();
     }
-    public void addToCardMassageIsPresent(){
+    public void waitAddToCardMassageIsPresent(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(CARD_MASSAGE));
     }
     public void clickAddToWishListButton(){

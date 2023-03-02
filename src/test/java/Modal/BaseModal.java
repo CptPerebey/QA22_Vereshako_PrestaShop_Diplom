@@ -8,12 +8,12 @@ public class BaseModal extends BasePage {
     public BaseModal(WebDriver driver) {
         super(driver);
     }
-    private static final By FILTER_TOPS_BUTTON = By.id("layered_category_4");
-    private static final By FILTER_DRESSES_BUTTON = By.id("uniform-layered_category_8");
-    private static final By FILTER_JACKETS_BUTTON = By.id("uniform-layered_category_14");
-    private static final By FILTER_SHOES_BUTTON = By.id("layered_category_15");
-    private static final By FILTER_BAGS_BUTTON = By.id("layered_category_16");
-    private static final By FILTER_SUIT_BUTTON = By.id("layered_category_17");
+    private static final By FILTER_TOPS_BUTTON = By.xpath("//a[@rel ='nofollow' and contains(text(),'Tops')]/ancestor::li//input[@class ='checkbox']");
+    private static final By FILTER_DRESSES_BUTTON = By.xpath("//a[@rel ='nofollow' and contains(text(),'Dresses')]/ancestor::li//input[@class ='checkbox']");
+    private static final By FILTER_JACKETS_BUTTON = By.xpath("//a[@rel ='nofollow' and contains(text(),'Jackets')]/ancestor::li//input[@class ='checkbox']");
+    private static final By FILTER_SHOES_BUTTON = By.xpath("//a[@rel ='nofollow' and contains(text(),'Shoes')]/ancestor::li//input[@class ='checkbox']");
+    private static final By FILTER_BAGS_BUTTON = By.xpath("//a[@rel ='nofollow' and contains(text(),'Bags')]/ancestor::li//input[@class ='checkbox']");
+    private static final By FILTER_SUIT_BUTTON = By.xpath("//a[@rel ='nofollow' and contains(text(),'Suit')]/ancestor::li//input[@class ='checkbox']");
 
     public void clickTopsButton(){
         driver.findElement(FILTER_TOPS_BUTTON).click();
@@ -33,6 +33,7 @@ public class BaseModal extends BasePage {
     public void clickSuitButton(){
         driver.findElement(FILTER_SUIT_BUTTON).click();
     }
+
 
 
 

@@ -1,10 +1,8 @@
 package Tests;
 
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CardTests extends BaseTest {
@@ -14,7 +12,7 @@ public class CardTests extends BaseTest {
         headPage.clickWomenButton();
         womenPage.clickItemByNameWithAction(name);
         productDetailsPage.addToCardItem();
-        productDetailsPage.addToCardMassageIsPresent();
+        productDetailsPage.waitAddToCardMassageIsPresent();
         Assert.assertTrue(productDetailsPage.checkAddToCard());
     }
 

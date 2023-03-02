@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WishListPage extends BasePage{
-    protected static final By MY_WISHLIST = By.xpath("//a[@href= 'javascript:;']/../following-sibling::td/a[@onclick]");
+    protected static final By MY_WISHLIST = By.xpath("//a[@href='javascript:;' and contains(@onclick, 'javascript:WishlistManage')]");
     private static final By ITEM_ON_WISHLIST_LINK = By.xpath("//*[@class='product-name']/small/ancestor::p");
 
 

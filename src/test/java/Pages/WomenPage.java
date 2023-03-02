@@ -24,6 +24,7 @@ public class WomenPage extends BasePage{
     private final By ADD_TO_CARD_BUTTON = By.xpath("//*[@class='button ajax_add_to_cart_button btn btn-default']");
     private final By CLOSE_WINDOW_ADD_TO_CARD_BUTTON= By.xpath("//*[@class='cross']");
     private final By DROPDOWN_ON_WOMEN_PAGE = By.id("selectProductSort");
+    private final static By CLOSE_BUTTON_IN_FILTER = By.cssSelector(".icon-remove");
 
 
     public WebElement getProductContainerByName(String productsName) {
@@ -72,6 +73,9 @@ public class WomenPage extends BasePage{
                 .click()
                 .build()
                 .perform();
+    }
+    public void waitCloseButtonInFilter(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CLOSE_BUTTON_IN_FILTER));
     }
 
 }

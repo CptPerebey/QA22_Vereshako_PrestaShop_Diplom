@@ -82,11 +82,11 @@ public class SortingTests extends BaseTest{
 
         };
     }
-    @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestDataWithFilter")
-    public void checkingGoodsInTheCatalogTest(List<String> nameItem, List <String> priceItem) throws InterruptedException {
+    @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestDataWithFilter",description = "Тест падает так как часть названий товаров написано кирилицой")
+    public void checkingGoodsInTheCatalogWithFilterTest(List<String> nameItem, List <String> priceItem) throws InterruptedException {
         headPage.clickWomenButton();
         baseModal.clickBagsButton();
-        Thread.sleep(2000);
+        womenPage.waitCloseButtonInFilter();
         Assert.assertEquals(womenPage.getSortingListItemName(), nameItem);
     }
 
