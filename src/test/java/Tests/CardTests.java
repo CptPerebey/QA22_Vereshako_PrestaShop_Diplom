@@ -30,7 +30,7 @@ public class CardTests extends BaseTest {
     }
 
     @Test
-    public void buyItem() throws InterruptedException {
+    public void buyItem()  {
         String itemName = "Blouse";
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput("Sobaka212@mail.ru");
@@ -42,10 +42,10 @@ public class CardTests extends BaseTest {
         womenPage.clickCloseWindow();
         headPage.clickCardButton();
         cardPage.clickProcessedToCheckoutButton();
-        Thread.sleep(2000);
+        cardPage.waitForProcessedToCheckoutButtonToBeClickable();
         cardPage.clickProcessedToCheckoutButtonOnAddressStep();
         cardPage.clickAgreeWithDeliveryButton();
-        Thread.sleep(2000);
+        cardPage.waitForAgreeWithDeliveryButtonIsSelected();
         cardPage.clickProcessedToCheckoutButton();
         Assert.assertEquals(cardPage.getEndMassage(),"No payment modules have been installed.");
 

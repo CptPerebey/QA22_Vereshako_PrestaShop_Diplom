@@ -25,6 +25,7 @@ public class WomenPage extends BasePage{
     private final By CLOSE_WINDOW_ADD_TO_CARD_BUTTON= By.xpath("//*[@class='cross']");
     private final By DROPDOWN_ON_WOMEN_PAGE = By.id("selectProductSort");
     private final static By CLOSE_BUTTON_IN_FILTER = By.cssSelector(".icon-remove");
+    private final static By LOADING_ICON = By.xpath("//*[@class = 'product_list grid row']//img[@src='http://prestashop.qatestlab.com.ua/img/loader.gif' and contains(text(), '')]");
 
 
     public WebElement getProductContainerByName(String productsName) {
@@ -64,7 +65,7 @@ public class WomenPage extends BasePage{
     }
     public  void waitDownloadItem(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PRODUCT_NAME_SELECTOR));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(LOADING_ICON));
     }
     public void clickItemByNameWithAction(String name){
         Actions actions = new Actions(driver);
@@ -79,3 +80,4 @@ public class WomenPage extends BasePage{
     }
 
 }
+

@@ -50,10 +50,10 @@ public class SortingTests extends BaseTest{
     }
     @Test(groups = {"Smoke"}, description = "Test to check the sorting of products on the main page",
             dataProvider = "productsSortingTestDataForWomenPage")
-    public void sortingTest(String optionName,List<String> expectedItemList) throws InterruptedException {
+    public void sortingTest(String optionName,List<String> expectedItemList) {
         headPage.clickWomenButton();
         womenPage.selectSortingOrderOption(optionName);
-        Thread.sleep(2000);
+        womenPage.waitDownloadItem();
         Assert.assertEquals(womenPage.getSortingListItemName(), expectedItemList);
     }
     @DataProvider()
@@ -83,7 +83,7 @@ public class SortingTests extends BaseTest{
         };
     }
     @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestDataWithFilter",description = "Тест падает так как часть названий товаров написано кирилицой")
-    public void checkingGoodsInTheCatalogWithFilterTest(List<String> nameItem, List <String> priceItem) throws InterruptedException {
+    public void checkingGoodsInTheCatalogWithFilterTest(List<String> nameItem, List <String> priceItem) {
         headPage.clickWomenButton();
         baseModal.clickBagsButton();
         womenPage.waitCloseButtonInFilter();

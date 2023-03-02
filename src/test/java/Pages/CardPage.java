@@ -3,6 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -38,5 +39,12 @@ public class CardPage extends BasePage{
     public static  String getEndMassage(){
         return driver.findElement(END_MASSAGE).getText();
     }
+    public void waitForProcessedToCheckoutButtonToBeClickable(){
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(PROCESSED_TO_CHECKOUT_BUTTON));
+    }
+    public void waitForAgreeWithDeliveryButtonIsSelected(){
+        wait.until(ExpectedConditions.elementToBeSelected(AGREE_WITH_DELIVERY_CHECKBOX));
+    }
+
 
 }
