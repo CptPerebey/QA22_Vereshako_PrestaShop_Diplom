@@ -10,7 +10,7 @@ import java.util.List;
 public class SortingTests extends BaseTest{
     @Test(groups = {"Smoke"}, description = "Test to check the sorting of products on the main page",
             dataProvider = "productsSortingTestDataForHeadPage")
-    public void sortingTestOnHeadPage(String optionName, List<String> expectedItemList) {
+    public void sortingTestOnHeadPage(String optionName, List<String> expectedItemList) throws InterruptedException {
         headPage.selectSortingOrderOption(optionName);
         Assert.assertEquals(headPage.getSortingListItemName(), expectedItemList);
     }

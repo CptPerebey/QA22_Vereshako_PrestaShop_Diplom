@@ -1,9 +1,12 @@
 package Pages;
 
+import Enams.SelectOptionOnHeadPage;
+import Pages.MyUtils.MyUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +20,7 @@ public class HeadPage extends BasePage{
 
     private static final By ITEM_ON_HEAD_PAGE = By.xpath("//div/ul[@id='homefeatured']/li");
 
-    private static final By ITEM_ON_HEAD_LINK = By.xpath("//ul[@id='homefeatured']//a[@class='product-name']");
+    private static final By ITEM_ON_HEAD_LINK = By.cssSelector("ul.active li");
     private static final By POPULAR_BUTTON= By.xpath("//*[@class='homefeatured']");
     private static final By HEADLINER_BUTTON = By.xpath("//*[@class='blockbestsellers']");
     private static final By PRODUCT_PRICE_LOKATOR = By.cssSelector("#our_price_display");
@@ -40,13 +43,13 @@ public class HeadPage extends BasePage{
 
     public List<String> getSortingListItemName (){
         List<WebElement> listItemName = driver.findElements(ITEM_ON_HEAD_LINK);
-        List<String> allListItemName = listItemName.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<String> allListItemName = listItemName.stream().map(WebElement::getText).map(MyUtils::getItemName).collect(Collectors.toList());
         return allListItemName;
     }
     public void selectSortingOrderOption(String optionName) {
-        if (optionName == "Popular") {
+        if (optionName == SelectOptionOnHeadPage.Popular.optional) {
             clickPopularButton();
-        }else if (optionName == "HeadLiner") {
+        }else if (optionName == SelectOptionOnHeadPage.HeadLiner.optional) {
             clickHeadLinerButton();
         }
     }
