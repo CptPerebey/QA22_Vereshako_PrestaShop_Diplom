@@ -1,5 +1,6 @@
 package Tests;
 
+import io.qameta.allure.Attachment;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -8,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SortingTests extends BaseTest{
-    @Test(groups = {"Smoke"}, description = "Test to check the sorting of products on the main page",
+    @Test(groups = {"Regression"}, description = "Test to check the sorting of products on the main page",
             dataProvider = "productsSortingTestDataForHeadPage")
     public void sortingTestOnHeadPage(String optionName, List<String> expectedItemList) {
         headPage.selectSortingOrderOption(optionName);
@@ -24,7 +25,7 @@ public class SortingTests extends BaseTest{
 
         };
     }
-    @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestData")
+    @Test(groups = {"Regression"}, dataProvider = "inventoryItemsTestData")
     public void checkingGoodsInTheCatalogTest(String nameItem, String priceItem) {
         headPage.clickWomenButton();
         Assert.assertTrue(womenPage.getProductName(nameItem));
@@ -48,7 +49,8 @@ public class SortingTests extends BaseTest{
                 {"Floral Top  ", "624,00"},
         };
     }
-    @Test(groups = {"Smoke"}, description = "Test to check the sorting of products on the main page",
+    @Attachment(value = "screenshot", type = "image/png")
+    @Test(groups = {"SmokeTests"}, description = "Test to check the sorting of products on the main page",
             dataProvider = "productsSortingTestDataForWomenPage")
     public void sortingTest(String optionName,List<String> expectedItemList) {
         headPage.clickWomenButton();
@@ -56,6 +58,7 @@ public class SortingTests extends BaseTest{
         womenPage.waitDownloadItem();
         Assert.assertEquals(womenPage.getSortingListItemName(), expectedItemList);
     }
+
     @DataProvider()
     public Object[][] productsSortingTestDataForWomenPage() {
         return new Object[][]{
@@ -82,6 +85,7 @@ public class SortingTests extends BaseTest{
 
         };
     }
+    @Attachment(value = "screenshot", type = "image/png")
     @Test(groups = {"Smoke"}, dataProvider = "inventoryItemsTestDataWithFilter",description = "Тест падает так как часть названий товаров написано кирилицой")
     public void checkingGoodsInTheCatalogWithFilterTest(List<String> nameItem, List <String> priceItem) {
         headPage.clickWomenButton();

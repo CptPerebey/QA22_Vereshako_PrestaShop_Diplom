@@ -1,13 +1,14 @@
 package Pages;
 
-import Pages.MyUtils.MyUtils;
+import MyUtils.MyUtils;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Log4j2
 public class WishListPage extends BasePage{
     protected static final By MY_WISHLIST = By.xpath("//a[@href='javascript:;' and contains(@onclick, 'javascript:WishlistManage')]");
     private static final By ITEM_ON_WISHLIST_LINK = By.xpath("//*[@class='product-name']/small/ancestor::p");
@@ -18,6 +19,7 @@ public class WishListPage extends BasePage{
     }
 
     public void clickMyWishListButton(){
+        log.info("Кликаю по кнопке Мой список с помощью JS что бы открылся список с добавлеными товарами");
         jsClick(driver.findElement(MY_WISHLIST));
     }
     public List<String> getSortingListItemName (){

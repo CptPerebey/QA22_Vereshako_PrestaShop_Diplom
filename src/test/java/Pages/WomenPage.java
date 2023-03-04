@@ -1,5 +1,6 @@
 package Pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import org.testng.Assert;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Log4j2
 public class WomenPage extends BasePage{
     public WomenPage(WebDriver driver) {
         super(driver);
@@ -52,6 +53,7 @@ public class WomenPage extends BasePage{
     }
 
     public void clickCloseWindow(){
+        log.info("Кликаю по кнопке Закрыть после добавления товара в корзину");
         driver.findElement(CLOSE_WINDOW_ADD_TO_CARD_BUTTON).click();
     }
     public List<String> getSortingListItemName (){
@@ -68,6 +70,7 @@ public class WomenPage extends BasePage{
         wait.until(ExpectedConditions.invisibilityOfElementLocated(LOADING_ICON));
     }
     public void clickItemByNameWithAction(String name){
+        log.info("Кликаю по товару на странице с помощью Actions");
         Actions actions = new Actions(driver);
         actions
                 .moveToElement(getProductContainerByName(name))

@@ -1,7 +1,10 @@
 package Tests;
 
 import Modal.BaseModal;
+import Modal.NewAddressModal;
+import Modal.NewUserModal;
 import Pages.*;
+import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,8 +13,9 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
-
+@Listeners(TestLisener.class)
 public abstract class BaseTest {
+    protected static Faker faker = new Faker();
     protected WebDriver driver;
     protected AuthenticationPage authenticationPage;
     protected HeadPage headPage;
@@ -22,6 +26,9 @@ public abstract class BaseTest {
     protected CardPage cardPage;
     protected BaseModal baseModal;
     protected WishListPage wishListPage;
+    protected NewAddressModal newAddressModal;
+    protected NewUserModal newUserModal;
+    protected MyAddressesPage myAddressesPage;
 
     @Parameters({"browser"})
     @BeforeClass(alwaysRun = true)
@@ -48,7 +55,9 @@ public abstract class BaseTest {
        cardPage = new CardPage(driver);
        baseModal = new BaseModal(driver);
        wishListPage = new WishListPage(driver);
-
+       newAddressModal = new NewAddressModal(driver);
+       newUserModal = new NewUserModal(driver);
+       myAddressesPage = new MyAddressesPage(driver);
         testContext.setAttribute("driver", driver);
 
     }

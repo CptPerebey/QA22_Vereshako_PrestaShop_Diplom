@@ -32,26 +32,10 @@ public class CreatAccountPage extends BasePage{
     public void setEmailInput(String email){
         driver.findElement(EMAIL_INPUT).sendKeys(email);
     }
-    public void setClickNewAccountButton(){
+    public void clickNewAccountButton(){
         driver.findElement(CLICK_NEW_ACCOUNT_BUTTON).click();
     }
 
 
-
-    public void selectDayOption (String optionName) {
-        driver.findElement(DAY_OF_BIRTH_LOCATOR).click();
-        Select select = new Select(driver.findElement(DAY_OF_BIRTH_LOCATOR));
-        select.selectByVisibleText(optionName);
-    }
-    public void selectMonthsOption (String optionName) {
-        driver.findElement(MONTHS_OF_BIRTH_LOCATOR).click();
-        Select select = new Select(driver.findElement(MONTHS_OF_BIRTH_LOCATOR));
-        select.selectByVisibleText(optionName);
-    }
-    public void selectYearsOption (String optionName) {
-        driver.findElement(YEARS_OF_BIRTH_LOCATOR).click();
-        Select select = new Select(driver.findElement(YEARS_OF_BIRTH_LOCATOR));
-        select.selectByVisibleText(optionName);
-    }
 
 }

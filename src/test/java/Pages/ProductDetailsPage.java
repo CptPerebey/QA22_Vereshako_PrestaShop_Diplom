@@ -1,9 +1,10 @@
 package Pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
+@Log4j2
 public class ProductDetailsPage extends BasePage{
 
     public ProductDetailsPage(WebDriver driver) {
@@ -26,7 +27,8 @@ public class ProductDetailsPage extends BasePage{
         return driver.findElement(ITEM_PRICE).getText();
     }
 
-    public void addToCardItem(){
+    public void clickAddToCardItem(){
+        log.info("Кликаю по кнопке добавить в корзину");
         driver.findElement(ADD_TO_CARD_ITEM_BUTTON).click();
     }
     public boolean checkAddToCard(){
@@ -36,9 +38,11 @@ public class ProductDetailsPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOfElementLocated(CARD_MASSAGE));
     }
     public void clickAddToWishListButton(){
+        log.info("Кликаю по кнопке Добавить в список желаемого");
         driver.findElement(ADD_TO_WISHLIST_BUTTON).click();
     }
     public void clickCloseButtonAfterAddToWishL(){
+        log.info("Кликаю по кнопке Кликаю по кнопке закрыть после добавления товара в список желаемого");
         driver.findElement(CLOSE_MASSAGE_ADD_TO_WISHLIST).click();
     }
 

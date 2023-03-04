@@ -1,4 +1,4 @@
-package Pages.MyUtils;
+package MyUtils;
 
 
 public class MyUtils {

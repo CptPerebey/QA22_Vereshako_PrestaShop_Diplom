@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 
 public class SearchTest extends BaseTest{
-@Test
+@Test(groups = {"SmokeTests"})
     public void searchTest(){
     String itemName = "Blouse";
     headPage.setSearchInput(itemName);

@@ -1,16 +1,16 @@
 package Pages;
 
 import Enams.SelectOptionOnHeadPage;
-import Pages.MyUtils.MyUtils;
+import MyUtils.MyUtils;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Log4j2
 public class HeadPage extends BasePage{
     public HeadPage(WebDriver driver) {
         super(driver);
@@ -32,12 +32,15 @@ public class HeadPage extends BasePage{
 
 
     public void clickLoginButton(){
+        log.info("Кликаю по кнопке Login на главной странице");
         driver.findElement(LOGIN_BUTTON).click();
     }
     public void clickPopularButton(){
+        log.info("Кликаю по кнопке Популярное на главной странице");
         driver.findElement(POPULAR_BUTTON).click();
     }
     public void clickHeadLinerButton(){
+        log.info("Кликаю по кнопке Лидеры продаж на главной странице");
         driver.findElement(HEADLINER_BUTTON).click();
     }
 
@@ -47,6 +50,7 @@ public class HeadPage extends BasePage{
         return allListItemName;
     }
     public void selectSortingOrderOption(String optionName) {
+        log.info("Выбор кнопки Популярное или Лидеры продаж на главной странице");
         if (optionName == SelectOptionOnHeadPage.Popular.optional) {
             clickPopularButton();
         }else if (optionName == SelectOptionOnHeadPage.HeadLiner.optional) {
@@ -54,16 +58,20 @@ public class HeadPage extends BasePage{
         }
     }
     public void clickWomenButton() {
+        log.info("Кликаю по кнопке Women");
         driver.findElement(WOMEN_BUTTON).click();
     }
 
     public void clickCardButton(){
+        log.info("Кликаю по кнопке Корзина");
         driver.findElement(CARD_BUTTON).click();
     }
     public void setSearchInput(String itemName){
+        log.info("Ввожу название предмета в поисковую строку");
         driver.findElement(SEARCH_INPUT).sendKeys(itemName);
     }
     public void clickSearchButton(){
+        log.info("Кликаю по кнопке поиск с помощью Action");
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(SEARCH_BUTTON))
                 .click()
@@ -71,6 +79,7 @@ public class HeadPage extends BasePage{
                 .perform();
     }
     public void clickMyAccountButton(){
+        log.info("Кликаю по кнопке мой аккаунт");
         driver.findElement(MY_ACCOUNT_BUTTON).click();
     }
 

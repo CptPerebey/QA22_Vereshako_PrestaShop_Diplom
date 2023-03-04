@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest{
-    @Test
+    @Test(groups = {"SmokeTests"})
     public void loginTest(){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput("Sobaka212@mail.ru");
