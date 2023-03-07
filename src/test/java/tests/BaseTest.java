@@ -3,6 +3,9 @@ package tests;
 import modal.BaseModal;
 import modal.NewAddressModal;
 import modal.NewUserModal;
+import myUtils.PropertyReader;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import pages.*;
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -15,6 +18,9 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 @Listeners(TestLisener.class)
 public abstract class BaseTest {
+    public final static String BASE_URL = PropertyReader.getProperty("base_url");
+    public final static String BASE_USERNAME = PropertyReader.getProperty("username");
+    public final static String BASE_PASSWORD = PropertyReader.getProperty("password");
     protected static Faker faker = new Faker();
     protected WebDriver driver;
     protected AuthenticationPage authenticationPage;
@@ -30,21 +36,32 @@ public abstract class BaseTest {
     protected NewUserModal newUserModal;
     protected MyAddressesPage myAddressesPage;
 
-    @Parameters({"browser"})
+    @Parameters({"browser", "headless"})
     @BeforeClass(alwaysRun = true)
-    public void setUp(@Optional("chrome") String browserName, ITestContext testContext) throws Exception {
-        if(browserName.equals("chrome")) {
+    public void setUp(@Optional("Chrome") String browserName, @Optional("true") String headless, ITestContext testContext) throws Exception{
+        if (browserName.equals("Chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            if (headless.equals("false"))    {
+                options.addArguments("--headless");
+            }
             WebDriverManager.chromedriver().setup();
+            options.addArguments("--ignore-certificate-errors");
+            options.addArguments("--disable-popup-blocking");
+            options.addArguments("--disable-notifications");
             driver = new ChromeDriver();
-        } else if(browserName.equals("fireFox")) {
+        } else if (browserName.equals("Firefox")) {
+            FirefoxOptions options = new FirefoxOptions();
+            if (headless.equals("false"))    {
+                options.addArguments("--headless");
+            }
             WebDriverManager.firefoxdriver().setup();
+            options.addArguments("--ignore-certificate-errors");
+            options.addArguments("--disable-popup-blocking");
+            options.addArguments("--disable-notifications");
             driver = new FirefoxDriver();
         } else {
             throw new Exception("Incorrect browser name");
         }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
        authenticationPage = new AuthenticationPage(driver);
        headPage = new HeadPage(driver);
@@ -65,7 +82,7 @@ public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void negative() {
-        driver.get("http://prestashop.qatestlab.com.ua/ru/");
+        driver.get(BASE_URL);
     }
 
     @AfterClass(alwaysRun = true)

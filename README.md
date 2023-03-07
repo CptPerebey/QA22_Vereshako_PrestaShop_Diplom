@@ -53,7 +53,7 @@ CheckList:
 
 Smoke tests:
 
-mvn clean test - DsuiteXmlFile = "Smoke.xml"
+mvn clean test
 
 Regression tests: 
 
