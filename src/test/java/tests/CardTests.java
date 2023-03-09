@@ -11,11 +11,12 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 
 public class CardTests extends BaseTest {
-    @Test
+    @Test(groups = {"SmokeTests"},description = "Тест на добавление товара в корзину")
     public void addToCardTest() {
         String name = "Faded Short Sleeve T-shirts";
         headPage.clickWomenButton();
         womenPage.clickItemByNameWithAction(name);
+        productDetailsPage.waitAddToCardButtonIsPresent();
         productDetailsPage.clickAddToCardItem();
         productDetailsPage.waitAddToCardMassageIsPresent();
         Assert.assertTrue(productDetailsPage.checkAddToCard());
@@ -38,8 +39,10 @@ public class CardTests extends BaseTest {
     public void buyItem()  {
         String itemName = "Blouse";
         headPage.clickLoginButton();
+        headPage.implicitlyWaitForTest();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
+        headPage.implicitlyWaitForTest();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
@@ -47,7 +50,9 @@ public class CardTests extends BaseTest {
                 .build();
         NewUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
+        headPage.implicitlyWaitForTest();
         myAccountPage.clickMyAddressButton();
+        headPage.implicitlyWaitForTest();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().firstName())
@@ -60,8 +65,11 @@ public class CardTests extends BaseTest {
                 .build();
         newAddressModal.fillFormAddress(testAddress);
         myAddressesPage.clickSaveButton();
+        headPage.implicitlyWaitForTest();
         headPage.clickWomenButton();
+        headPage.implicitlyWaitForTest();
         womenPage.getProductContainerByName(itemName).click();
+        productDetailsPage.waitAddToCardButtonIsPresent();
         productDetailsPage.clickAddToCardItem();
         womenPage.clickCloseWindow();
         headPage.clickCardButton();
@@ -79,8 +87,11 @@ public class CardTests extends BaseTest {
         String firstItemNameTest = "Blouse";
         String secondItemNameTest = "Faded Short Sleeve T-shirts";
         headPage.clickLoginButton();
+        headPage.implicitlyWaitForTest();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
+        authenticationPage.waitToCreateButtonIsPresent();
         authenticationPage.clickCreateButtonAccount();
+        headPage.implicitlyWaitForTest();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
@@ -88,7 +99,9 @@ public class CardTests extends BaseTest {
                 .build();
         NewUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
+        headPage.implicitlyWaitForTest();
         myAccountPage.clickMyAddressButton();
+        headPage.implicitlyWaitForTest();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().firstName())
@@ -101,6 +114,7 @@ public class CardTests extends BaseTest {
                 .build();
         newAddressModal.fillFormAddress(testAddress);
         myAddressesPage.clickSaveButton();
+        headPage.implicitlyWaitForTest();
         Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
         womenPage.clickItemByNameWithAction(firstItemNameTest);

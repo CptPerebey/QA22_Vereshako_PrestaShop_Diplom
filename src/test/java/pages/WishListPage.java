@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import myUtils.MyUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -17,11 +18,12 @@ public class WishListPage extends BasePage{
     public WishListPage(WebDriver driver) {
         super(driver);
     }
-
+    @Step
     public void clickMyWishListButton(){
         log.info("Кликаю по кнопке Мой список с помощью JS что бы открылся список с добавлеными товарами");
         jsClick(driver.findElement(MY_WISHLIST));
     }
+    @Step
     public List<String> getSortingListItemName (){
         List<WebElement> listItemName = driver.findElements(ITEM_ON_WISHLIST_LINK);
         List<String> allListItemName = listItemName.stream().map(WebElement::getText).map(MyUtils::getItemName).collect(Collectors.toList());

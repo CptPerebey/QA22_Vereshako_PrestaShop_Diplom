@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,33 +19,39 @@ public class CardPage extends BasePage{
     private static final By AGREE_WITH_DELIVERY_CHECKBOX = By.id("cgv");
     private static final By END_MASSAGE = By.xpath("//*[@class='alert alert-warning']");
 
+    @Step
     public void clickDeleteItemButton(){
         log.info("Кликаю по кнопке удалить товар из корзины");
         driver.findElement(DELETE_ITEM_BUTTON).click();
     }
-
+    @Step
     public String getItemPrice() {
         return driver.findElement(ITEMS_PRISE).getText();
     }
+    @Step
     public void clickProcessedToCheckoutButton(){
         log.info("Кликаю по кнопке ProcessedToCheckout для перехода к следующему шагу покупки");
         driver.findElement(PROCESSED_TO_CHECKOUT_BUTTON).click();
     }
+    @Step
     public void clickAgreeWithDeliveryButton(){
         log.info("Кликаю по кнопке AgreeWithDelivery для того что бы была возможность продолжить покупку");
         driver.findElement(AGREE_WITH_DELIVERY_CHECKBOX).click();
     }
+    @Step
     public void clickProcessedToCheckoutButtonOnAddressStep(){
         log.info("Кликаю ProcessedToCheckout на шаге выбора ардреса, т.к. там нужен отдельный локатор");
         driver.findElement(PROCESSED_TO_CHECKOUT_BUTTON_ON_ADDRESS_STEP).click();
     }
-
+    @Step
     public static  String getEndMassage(){
         return driver.findElement(END_MASSAGE).getText();
     }
+    @Step
     public void waitForProcessedToCheckoutButtonToBeClickable(){
         wait.until(ExpectedConditions.invisibilityOfElementLocated(PROCESSED_TO_CHECKOUT_BUTTON));
     }
+    @Step
     public void waitForAgreeWithDeliveryButtonIsSelected(){
         wait.until(ExpectedConditions.elementToBeSelected(AGREE_WITH_DELIVERY_CHECKBOX));
     }

@@ -40,10 +40,13 @@ public abstract class BaseTest {
     @BeforeClass(alwaysRun = true)
     public void setUp(ITestContext testContext) throws Exception {
         String browserName = System.getProperty("browser", "chrome");
-        String headless = System.getProperty("headless", "false");
+        String headless = System.getProperty("headless", "true");
         if(browserName.equals("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            if(headless.equals("true")) {
+                options.addArguments("--headless");}
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         } else if(browserName.equals("fireFox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();

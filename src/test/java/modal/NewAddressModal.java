@@ -5,6 +5,8 @@ import elements.Dropdown;
 import elements.Input;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 @Log4j2
 public class NewAddressModal extends BaseModal{
     public NewAddressModal(WebDriver driver) {

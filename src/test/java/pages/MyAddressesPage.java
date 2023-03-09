@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,11 +11,12 @@ public class MyAddressesPage extends BasePage{
     public MyAddressesPage(WebDriver driver) {
         super(driver);
     }
+    @Step
     public void clickSaveButton(){
         log.info("Кликаю по кнопке сохранить на странице добавления адреса");
         driver.findElement(SAVE_BUTTON_LOCATOR).click();
     }
-
+    @Step
     public boolean successfulCreatedAddressMessage(){
         log.info("Проверяю добавлен ли новый адрес");
         return driver.findElement(SUCCESS_ADD_ADDRESSES_LOCATOR).isDisplayed();

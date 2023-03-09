@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,13 +15,16 @@ public class MyAccountPage extends BasePage{
     private final static By MY_WISHLIST_BUTTON = By.xpath("//*[@class= 'icon-heart']");
     private static final By ADDRESS_BUTTON = By.cssSelector(".icon-building");
 
+    @Step
     public static String getAccountMassage(){
       return driver.findElement(MY_ACCOUNT_MASSAGE).getText();
     }
+    @Step
     public void clickMyWishListButton(){
         log.info("Кликаю по кнопке мой список желаемого");
         driver.findElement(MY_WISHLIST_BUTTON).click();
     }
+    @Step
     public void clickMyAddressButton(){
         log.info("Кликаю по кнопке мой адрес");
         driver.findElement(ADDRESS_BUTTON).click();

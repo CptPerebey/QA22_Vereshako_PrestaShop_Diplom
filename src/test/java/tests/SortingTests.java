@@ -49,10 +49,11 @@ public class SortingTests extends BaseTest{
                 {"Floral Top  ", "624,00"},
         };
     }
-    @Test(groups = {"SmokeTests"}, description = "Тест для проверки сортировки на WomanPage",
+    @Test(groups = {"SmokeTests","Negative"}, description = "Тест для проверки сортировки на WomanPage",
             dataProvider = "productsSortingTestDataForWomenPage")
     @Attachment(value = "screenshot", type = "image/png")
     public void sortingTest(String optionName,List<String> expectedItemList) {
+        headPage.waitLoginButtonButtonIsPresent();
         headPage.clickWomenButton();
         womenPage.selectSortingOrderOption(optionName);
         womenPage.waitDownloadItem();

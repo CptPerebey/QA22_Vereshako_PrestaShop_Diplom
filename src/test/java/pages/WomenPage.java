@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,43 +28,46 @@ public class WomenPage extends BasePage{
     private final static By CLOSE_BUTTON_IN_FILTER = By.cssSelector(".icon-remove");
     private final static By LOADING_ICON = By.xpath("//*[@class = 'product_list grid row']//img[@src='http://prestashop.qatestlab.com.ua/img/loader.gif' and contains(text(), '')]");
 
-
+    @Step
     public WebElement getProductContainerByName(String productsName) {
         return driver.findElement(By.xpath(String.format(PRODUCT_CONTAINER_LOCATOR, productsName)));
     }
-
-
+    @Step
     public boolean getProductName(String productsName) {
         WebElement productContainer = getProductContainerByName(productsName);
         return productContainer.findElement(PRODUCT_NAME_SELECTOR).isDisplayed();
     }
-
+    @Step
     public WebElement getProductContainerByPrice(String productsPrice) {
         return driver.findElement(By.xpath(String.format(PRODUCT_CONTAINER_LOCATOR_PRICE, productsPrice)));
     }
-
+    @Step
     public boolean getProductPrice(String productsPrice) {
         WebElement productContainer = getProductContainerByPrice(productsPrice);
         return productContainer.findElement(PRODUCT_PRICE_SELECTOR).isDisplayed();
     }
-
+    @Step
     public void clickCloseWindow(){
         log.info("Кликаю по кнопке Закрыть после добавления товара в корзину");
         driver.findElement(CLOSE_WINDOW_ADD_TO_CARD_BUTTON).click();
     }
+    @Step
     public List<String> getSortingListItemName (){
         List<WebElement> listItemName = driver.findElements(PRODUCT_NAME_SELECTOR);
         List<String> allListItemName = listItemName.stream().map(WebElement::getText).collect(Collectors.toList());
         return allListItemName;
     }
+    @Step
     public void selectSortingOrderOption (String optionName) {
         Select select = new Select(driver.findElement(DROPDOWN_ON_WOMEN_PAGE));
         select.selectByVisibleText(optionName);
     }
+    @Step
     public  void waitDownloadItem(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(LOADING_ICON));
     }
+    @Step
     public void clickItemByNameWithAction(String name){
         log.info("Кликаю по товару на странице с помощью Actions");
         Actions actions = new Actions(driver);
@@ -73,6 +77,7 @@ public class WomenPage extends BasePage{
                 .build()
                 .perform();
     }
+    @Step
     public void waitCloseButtonInFilter(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(CLOSE_BUTTON_IN_FILTER));
     }
