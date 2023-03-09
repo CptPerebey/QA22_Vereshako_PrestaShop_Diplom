@@ -39,22 +39,23 @@ public abstract class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     public void setUp(ITestContext testContext) throws Exception {
-        String browserName = System.getProperty("browser", "Chrome");
-        String headless = System.getProperty("headless", "true");
-        if(browserName.equals("Chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            if(headless.equals("true")) {
-                options.addArguments("--headless");}
+        String browserName = System.getProperty("browser", "chrome");
+        String headless = System.getProperty("headless", "false");
+        if(browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver(options);
-        } else if(browserName.equals("Edge")) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
+            driver = new ChromeDriver();
+        } else if(browserName.equals("fireFox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
         } else {
             throw new Exception("Incorrect browser name");
         }
+        driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-       authenticationPage = new AuthenticationPage(driver);
+
+        authenticationPage = new AuthenticationPage(driver);
        headPage = new HeadPage(driver);
        creatAccountPage = new CreatAccountPage(driver);
        myAccountPage = new MyAccountPage(driver);

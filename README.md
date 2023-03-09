@@ -57,10 +57,10 @@ mvn clean test
 
 Regression tests: 
 
-mvn clean test - DsuiteXmlFile = "Regression.xml"
+mvn clean test -DsuiteXmlFile="Regression.xml" -Dbrowser="chrome"
 
 Negative tests:
 
-mvn clean test - DsuiteXmlFile = "Negative.xml"
+mvn clean test -DsuiteXmlFile="Negative.xml" -Dbrowser="chrome"
 
 Полочить отчет о пройденых тестах: allure serve target/allure-results
