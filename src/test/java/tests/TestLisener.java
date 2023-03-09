@@ -17,14 +17,12 @@ public class TestLisener implements ITestListener {
     }
 
     @Override
-    @Attachment(value = "screenshot", type = "image/png")
     public void onTestSuccess(ITestResult result) {
         ITestListener.super.onTestSuccess(result);
         System.out.println("Test " + result.getName() + " succeeded");
     }
 
     @Override
-    @Attachment(value = "screenshot", type = "image/png")
     public void onTestFailure(ITestResult result) {
         ITestListener.super.onTestFailure(result);
         System.out.println("Test " + result.getName() + " failed");

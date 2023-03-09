@@ -12,7 +12,7 @@ public class NewAddressModal extends BaseModal{
     }
 
     public void fillFormAddress(Address address) {
-        log.info("Заполняю поля для создания адреса");
+        log.info(String.format("Заполняю поля для создания адреса %s",address));
         new Input(driver, "firstname").setValue(address.getFirstName());
         new Input(driver, "lastname").setValue(address.getLastName());
         new Input(driver, "address1").setValue(address.getAddress());

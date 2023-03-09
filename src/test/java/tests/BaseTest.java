@@ -5,6 +5,7 @@ import modal.NewAddressModal;
 import modal.NewUserModal;
 import myUtils.PropertyReader;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import pages.*;
 import com.github.javafaker.Faker;
@@ -36,29 +37,19 @@ public abstract class BaseTest {
     protected NewUserModal newUserModal;
     protected MyAddressesPage myAddressesPage;
 
-    @Parameters({"browser", "headless"})
     @BeforeClass(alwaysRun = true)
-    public void setUp(@Optional("Chrome") String browserName, @Optional("true") String headless, ITestContext testContext) throws Exception{
-        if (browserName.equals("Chrome")) {
+    public void setUp(ITestContext testContext) throws Exception {
+        String browserName = System.getProperty("browser", "Chrome");
+        String headless = System.getProperty("headless", "true");
+        if(browserName.equals("Chrome")) {
             ChromeOptions options = new ChromeOptions();
-            if (headless.equals("false"))    {
-                options.addArguments("--headless");
-            }
+            if(headless.equals("true")) {
+                options.addArguments("--headless");}
             WebDriverManager.chromedriver().setup();
-            options.addArguments("--ignore-certificate-errors");
-            options.addArguments("--disable-popup-blocking");
-            options.addArguments("--disable-notifications");
-            driver = new ChromeDriver();
-        } else if (browserName.equals("Firefox")) {
-            FirefoxOptions options = new FirefoxOptions();
-            if (headless.equals("false"))    {
-                options.addArguments("--headless");
-            }
-            WebDriverManager.firefoxdriver().setup();
-            options.addArguments("--ignore-certificate-errors");
-            options.addArguments("--disable-popup-blocking");
-            options.addArguments("--disable-notifications");
-            driver = new FirefoxDriver();
+            driver = new ChromeDriver(options);
+        } else if(browserName.equals("Edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
         } else {
             throw new Exception("Incorrect browser name");
         }
