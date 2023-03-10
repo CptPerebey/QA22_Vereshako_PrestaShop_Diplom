@@ -41,20 +41,7 @@ public class CreatAccountPage extends BasePage{
     }
 
     @Step
-    public boolean waitCreateButtonIsPresent(){
-        try {
-            driver.findElement(CLICK_NEW_ACCOUNT_BUTTON);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
-    }
-    public boolean lastNameInputIsPresent(){
-        try {
-            driver.findElement(CLICK_NEW_ACCOUNT_BUTTON);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+    public void waitCreateButtonIsPresent(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(CLICK_NEW_ACCOUNT_BUTTON));
     }
 }

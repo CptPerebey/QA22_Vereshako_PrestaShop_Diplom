@@ -19,10 +19,8 @@ public class WomenPage extends BasePage{
     }
     private final By PRODUCT_NAME_SELECTOR = By.cssSelector("#center_column .product-name");
     private final By PRODUCT_PRICE_SELECTOR = By.cssSelector("#center_column .right-block [itemprop='price']");
-    private final By PRODUCT_LINK = By.cssSelector(".right-block .product-name");
     private final String PRODUCT_CONTAINER_LOCATOR = "//*[@class='product_img_link' and @title='%s']/ancestor::div[@class='product-container']";
     private final String PRODUCT_CONTAINER_LOCATOR_PRICE = "//span[@class='price product-price' and contains(text(),'%s ')] /ancestor::div[@class='product-container']";
-    private final By ADD_TO_CARD_BUTTON = By.xpath("//*[@class='button ajax_add_to_cart_button btn btn-default']");
     private final By CLOSE_WINDOW_ADD_TO_CARD_BUTTON= By.xpath("//*[@class='cross']");
     private final By DROPDOWN_ON_WOMEN_PAGE = By.id("selectProductSort");
     private final static By CLOSE_BUTTON_IN_FILTER = By.cssSelector(".icon-remove");

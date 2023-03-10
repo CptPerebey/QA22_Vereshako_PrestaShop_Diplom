@@ -14,6 +14,32 @@ public class CardTests extends BaseTest {
     @Test(groups = {"SmokeTests"},description = "Тест на добавление товара в корзину")
     public void addToCardTest() {
         String name = "Faded Short Sleeve T-shirts";
+        headPage.waitLastElementOnHeadPage();
+        headPage.clickLoginButton();
+        authenticationPage.setEmailForRegister(faker.internet().emailAddress());
+        authenticationPage.clickCreateButtonAccount();
+        User testUser = User.builder()
+                .lastName(faker.name().lastName())
+                .firstName(faker.name().firstName())
+                .password(faker.internet().password())
+                .build();
+        NewUserModal.fillFormUser(testUser);
+        creatAccountPage.clickNewAccountButton();
+        Assert.assertEquals(myAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
+        myAccountPage.clickMyAddressButton();
+        Address testAddress = Address.builder()
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().firstName())
+                .address(faker.address().streetAddress())
+                .zipCode(String.valueOf(faker.number().numberBetween(10000, 99999)))
+                .city(faker.address().city())
+                .homePhone(faker.phoneNumber().phoneNumber())
+                .state(State.ALASKA)
+                .addressTitle(faker.name().firstName())
+                .build();
+        newAddressModal.fillFormAddress(testAddress);
+        myAddressesPage.clickSaveButton();
+        Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
         womenPage.clickItemByNameWithAction(name);
         productDetailsPage.waitAddToCardButtonIsPresent();
@@ -21,7 +47,6 @@ public class CardTests extends BaseTest {
         productDetailsPage.waitAddToCardMassageIsPresent();
         Assert.assertTrue(productDetailsPage.checkAddToCard());
     }
-    @Attachment(value = "screenshot", type = "image/png")
     @Test(groups = {"Negative"},description = "Тест падает из-за бага в корзине")
     public void deleteItemFromCard() {
         String name = "Faded Short Sleeve T-shirts";
@@ -39,10 +64,8 @@ public class CardTests extends BaseTest {
     public void buyItem()  {
         String itemName = "Blouse";
         headPage.clickLoginButton();
-        headPage.implicitlyWaitForTest();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
-        headPage.implicitlyWaitForTest();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
@@ -50,9 +73,7 @@ public class CardTests extends BaseTest {
                 .build();
         NewUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        headPage.implicitlyWaitForTest();
         myAccountPage.clickMyAddressButton();
-        headPage.implicitlyWaitForTest();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().firstName())
@@ -65,43 +86,39 @@ public class CardTests extends BaseTest {
                 .build();
         newAddressModal.fillFormAddress(testAddress);
         myAddressesPage.clickSaveButton();
-        headPage.implicitlyWaitForTest();
         headPage.clickWomenButton();
-        headPage.implicitlyWaitForTest();
-        womenPage.getProductContainerByName(itemName).click();
+        womenPage.clickItemByNameWithAction(itemName);
         productDetailsPage.waitAddToCardButtonIsPresent();
         productDetailsPage.clickAddToCardItem();
         womenPage.clickCloseWindow();
         headPage.clickCardButton();
         cardPage.clickProcessedToCheckoutButton();
-        cardPage.waitForProcessedToCheckoutButtonToBeClickable();
         cardPage.clickProcessedToCheckoutButtonOnAddressStep();
         cardPage.clickAgreeWithDeliveryButton();
-        cardPage.waitForAgreeWithDeliveryButtonIsSelected();
         cardPage.clickProcessedToCheckoutButton();
         Assert.assertEquals(cardPage.getEndMassage(),"No payment modules have been installed.");
 
     }
     @Test(groups = {"Regression"},retryAnalyzer = RetryAnalyzer.class,description = "Тест на добавление товара в список желаемого")
-    public void addItemToWishList() {
+    public void addItemToWishList() throws InterruptedException {
         String firstItemNameTest = "Blouse";
         String secondItemNameTest = "Faded Short Sleeve T-shirts";
         headPage.clickLoginButton();
-        headPage.implicitlyWaitForTest();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
-        authenticationPage.waitToCreateButtonIsPresent();
+        Thread.sleep(2000);
         authenticationPage.clickCreateButtonAccount();
-        headPage.implicitlyWaitForTest();
+        Thread.sleep(2000);
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
                 .password(faker.internet().password())
                 .build();
         NewUserModal.fillFormUser(testUser);
+        Thread.sleep(2000);
         creatAccountPage.clickNewAccountButton();
-        headPage.implicitlyWaitForTest();
+        Thread.sleep(2000);
         myAccountPage.clickMyAddressButton();
-        headPage.implicitlyWaitForTest();
+        Thread.sleep(2000);
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().firstName())
@@ -113,20 +130,32 @@ public class CardTests extends BaseTest {
                 .addressTitle(faker.name().firstName())
                 .build();
         newAddressModal.fillFormAddress(testAddress);
+        Thread.sleep(2000);
         myAddressesPage.clickSaveButton();
-        headPage.implicitlyWaitForTest();
+        Thread.sleep(2000);
         Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
+        Thread.sleep(2000);
         womenPage.clickItemByNameWithAction(firstItemNameTest);
+        Thread.sleep(2000);
         productDetailsPage.clickAddToWishListButton();
+        Thread.sleep(2000);
         productDetailsPage.clickCloseButtonAfterAddToWishL();
+        Thread.sleep(2000);
         headPage.clickWomenButton();
+        Thread.sleep(2000);
         womenPage.clickItemByNameWithAction(secondItemNameTest);
+        Thread.sleep(2000);
         productDetailsPage.clickAddToWishListButton();
+        Thread.sleep(2000);
         productDetailsPage.clickCloseButtonAfterAddToWishL();
+        Thread.sleep(2000);
         headPage.clickMyAccountButton();
+        Thread.sleep(2000);
         myAccountPage.clickMyWishListButton();
+        Thread.sleep(2000);
         wishListPage.clickMyWishListButton();
+        Thread.sleep(2000);
         Assert.assertEquals(wishListPage.getSortingListItemName(), Arrays.asList("Faded Short Sleeve T-shirts","Blouse"));
 
     }

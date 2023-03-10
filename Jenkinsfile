@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     triggers {
-        parameterizedCron('''
-                    2 2 * * 6 %SUITE_NAME=Smoke.xml
-                    2 3 * * 6 %SUITE_NAME=Regression.xml
-                    0 0 * * 6 %SUITE_NAME=Negative.xml
-                ''')
+            parameterizedCron('''
+                50 20 * * * %SUITE_NAME=Smoke.xml
+                55 20 * * * %SUITE_NAME=Regression.xml
+            ''')
     }
 
     tools {
@@ -15,10 +14,13 @@ pipeline {
     }
 
     parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-        string(name: 'SUITE_NAME', defaultValue: 'Smoke.xml')
-        choice(name: 'BROWSER', choices: ['chrome', 'fireFox'], description: 'Select a browser')
-        booleanParam (defaultValue: false, description: 'Headless', name: 'HEADLESS')
+     gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+     string(name: 'SUITE_NAME', defaultValue: 'smokeTest.xml')
+     choice(choices: ['chrome', 'fireFox'], description: 'Select a browser', name: 'BROWSER',)
+     booleanParam (
+                   defaultValue: false,
+                   description: 'Headless',
+                   name: 'HEADLESS')
     }
 
     stages {
@@ -42,7 +44,6 @@ pipeline {
                 }
             }
         }
-
         stage('Generate Allure report') {
             steps {
                  script {

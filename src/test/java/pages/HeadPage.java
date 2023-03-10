@@ -9,9 +9,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 @Log4j2
 public class HeadPage extends BasePage{
@@ -28,6 +28,8 @@ public class HeadPage extends BasePage{
     private static final By SEARCH_INPUT = By.id("search_query_top");
     private static final By SEARCH_BUTTON = By.xpath("//*[@class='btn btn-default button-search']");
     private static final By MY_ACCOUNT_BUTTON = By.cssSelector(".account");
+    private static final By LOGOUT_BUTTON = By.cssSelector(".logout");
+    private static final By HOME_SLIDER = By.id("homepage-slider");
 
     @Step
     public void clickLoginButton(){
@@ -88,17 +90,19 @@ public class HeadPage extends BasePage{
         log.info("Кликаю по кнопке мой аккаунт");
         driver.findElement(MY_ACCOUNT_BUTTON).click();
     }
-    @Step
-    public void implicitlyWaitForTest(){
-        driver.manage().timeouts().implicitlyWait(3 , TimeUnit.SECONDS);
-    }
-    public boolean waitLoginButtonButtonIsPresent() {
+    public boolean loginButtonIsPresent() {
         try {
             driver.findElement(LOGIN_BUTTON);
         } catch (NoSuchElementException ex) {
             return false;
         }
         return true;
+    }
+    public void clickLogOutButton(){
+        driver.findElement(LOGOUT_BUTTON).click();
+    }
+    public void waitLastElementOnHeadPage(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(HOME_SLIDER));
     }
 
 

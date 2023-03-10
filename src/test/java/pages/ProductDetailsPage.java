@@ -12,9 +12,7 @@ public class ProductDetailsPage extends BasePage{
     public ProductDetailsPage(WebDriver driver) {
         super(driver);
     }
-    protected final By ITEM_NAME = By.cssSelector("[itemprop='name']");
-    private final By ITEM_PRICE = By.cssSelector("#our_price_display");
-    private final By ADD_TO_CARD_ITEM_BUTTON = By.cssSelector(".buttons_bottom_block.no-print .exclusive");
+    private final By ADD_TO_CARD_ITEM_BUTTON = By.xpath("//*[@name='Submit']");
     private final By CARD_MASSAGE = By.xpath("//i[@class='icon-ok']");
     protected final static By ADD_TO_WISHLIST_BUTTON= By.id("wishlist_button");
     protected final static By CLOSE_MASSAGE_ADD_TO_WISHLIST= By.xpath("//*[@title='Close']");
@@ -45,13 +43,8 @@ public class ProductDetailsPage extends BasePage{
         driver.findElement(CLOSE_MASSAGE_ADD_TO_WISHLIST).click();
     }
     @Step
-    public boolean waitAddToCardButtonIsPresent(){
-        try {
-            driver.findElement(ADD_TO_CARD_ITEM_BUTTON);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
+    public void waitAddToCardButtonIsPresent(){
+       wait.until(ExpectedConditions.presenceOfElementLocated(ADD_TO_CARD_ITEM_BUTTON));
     }
 
 }

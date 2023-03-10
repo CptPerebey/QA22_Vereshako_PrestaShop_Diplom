@@ -17,7 +17,6 @@ public class AuthenticationPage extends BasePage{
     protected final static By LOGIN_EMAIL_INPUT = By.id("email");
     protected final static By LOGIN_PASSWORD_INPUT= By.id("passwd");
     protected final static By SIGN_IN_BUTTON = By.id("SubmitLogin");
-    public final By ICON_INFORMATION_LOCATOR = By.xpath("//*[@class='page-heading' and text()='Create an account']");
     @Step
     public void setLoginEmailInput(String email){
         log.info(String.format("Ввожу email для авторизации %s ", email));
@@ -43,21 +42,9 @@ public class AuthenticationPage extends BasePage{
         log.info("Кликаю по кнопке Создать аккаун");
         driver.findElement(CREATE_ACCOUNT_BUTTON).click();
     }
-/*    @Step
-    public void waitToCreateButtonIsPresent2(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(CREATE_ACCOUNT_BUTTON));
-    }*/
     @Step
-    public boolean waitToCreateButtonIsPresent() {
-        try {
-            driver.findElement(CREATE_ACCOUNT_BUTTON);
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
-        return true;
-    }
     public void waitForOpenAuthenticationPage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ICON_INFORMATION_LOCATOR));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(CREATE_ACCOUNT_BUTTON)));
     }
 
 

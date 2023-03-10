@@ -51,9 +51,7 @@ public class SortingTests extends BaseTest{
     }
     @Test(groups = {"SmokeTests","Negative"}, description = "Тест для проверки сортировки на WomanPage",
             dataProvider = "productsSortingTestDataForWomenPage")
-    @Attachment(value = "screenshot", type = "image/png")
     public void sortingTest(String optionName,List<String> expectedItemList) {
-        headPage.waitLoginButtonButtonIsPresent();
         headPage.clickWomenButton();
         womenPage.selectSortingOrderOption(optionName);
         womenPage.waitDownloadItem();
@@ -87,7 +85,6 @@ public class SortingTests extends BaseTest{
         };
     }
     @Test(groups = {"SmokeTests"}, dataProvider = "inventoryItemsTestDataWithFilter",description = "Тест падает так как часть названий товаров написано кириллицой")
-    @Attachment(value = "screenshot", type = "image/png")
     public void checkingGoodsInTheCatalogWithFilterTest(List<String> nameItem, List <String> priceItem) {
         headPage.clickWomenButton();
         baseModal.clickBagsButton();

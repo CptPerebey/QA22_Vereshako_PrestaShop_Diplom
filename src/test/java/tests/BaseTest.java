@@ -1,12 +1,14 @@
 package tests;
 
+import dataModels.Address;
+import dataModels.User;
+import enums.State;
 import modal.BaseModal;
 import modal.NewAddressModal;
 import modal.NewUserModal;
 import myUtils.PropertyReader;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import pages.*;
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -40,7 +42,7 @@ public abstract class BaseTest {
     @BeforeClass(alwaysRun = true)
     public void setUp(ITestContext testContext) throws Exception {
         String browserName = System.getProperty("browser", "chrome");
-        String headless = System.getProperty("headless", "true");
+        String headless = System.getProperty("headless", "false");
         if(browserName.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
             if(headless.equals("true")) {
@@ -78,6 +80,12 @@ public abstract class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void negative() {
         driver.get(BASE_URL);
+    }
+    @AfterMethod(alwaysRun = true)
+    public void cleanUp(){
+        driver.manage().deleteAllCookies();
+        ((JavascriptExecutor) driver).executeScript("window.localStorage.clear();");
+        ((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");
     }
 
     @AfterClass(alwaysRun = true)

@@ -7,11 +7,10 @@ import java.util.Arrays;
 
 public class SearchTest extends BaseTest{
 @Test(groups = {"SmokeTests"},retryAnalyzer = RetryAnalyzer.class,description = "Тест на поиск товара с помощью поисковой строки")
-    public void searchTest(){
+    public void searchTest() {
     String itemName = "Blouse";
-    headPage.waitLoginButtonButtonIsPresent();
+    headPage.loginButtonIsPresent();
     headPage.setSearchInput(itemName);
-    headPage.implicitlyWaitForTest();
     headPage.clickSearchButton();
     Assert.assertEquals(womenPage.getSortingListItemName(), Arrays.asList("Blouse", "Fuchsia Silk Sleeveless Blouse",
             "Green Chiffon Sleeveless Blouse", "Red Cotton Blouse", "Blue blouse","Black blouse with flowers",

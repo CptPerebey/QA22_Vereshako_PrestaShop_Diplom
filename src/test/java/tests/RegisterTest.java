@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class RegisterTest extends BaseTest{
     @Test(description = "Тест на регистрацию для проверки логина")
     public void positiveRegisterTest()  {
-        headPage.waitLoginButtonButtonIsPresent();
+        headPage.loginButtonIsPresent();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister("Sobaka212@mail.ru");
         authenticationPage.clickCreateButtonAccount();
@@ -19,8 +19,8 @@ public class RegisterTest extends BaseTest{
         Assert.assertEquals(myAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
     }
     @Test(groups = {"SmokeTests"}, description = "Тест на регистрацию")
-    public void positiveRegisterTestWithFaker()  {
-        headPage.waitLoginButtonButtonIsPresent();
+    public void positiveRegisterTestWithFaker() {
+        headPage.loginButtonIsPresent();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
