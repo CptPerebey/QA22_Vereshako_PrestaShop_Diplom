@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest{
-    @Test(groups = {"SmokeTests"},description = "Тест на проверку авторизации")
+    @Test(groups = {"Regression"},description = "Тест на проверку авторизации")
     public void loginTest(){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(BASE_USERNAME);

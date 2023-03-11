@@ -84,7 +84,7 @@ public class SortingTests extends BaseTest{
 
         };
     }
-    @Test(groups = {"SmokeTests"}, dataProvider = "inventoryItemsTestDataWithFilter",description = "Тест падает так как часть названий товаров написано кириллицой")
+    @Test(groups = {"Regression"}, dataProvider = "inventoryItemsTestDataWithFilter",description = "Тест падает так как часть названий товаров написано кириллицой")
     public void checkingGoodsInTheCatalogWithFilterTest(List<String> nameItem, List <String> priceItem) {
         headPage.clickWomenButton();
         baseModal.clickBagsButton();

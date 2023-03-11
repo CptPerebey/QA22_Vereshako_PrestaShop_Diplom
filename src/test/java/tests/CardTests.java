@@ -42,7 +42,6 @@ public class CardTests extends BaseTest {
         Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
         womenPage.clickItemByNameWithAction(name);
-        productDetailsPage.waitAddToCardButtonIsPresent();
         productDetailsPage.clickAddToCardItem();
         productDetailsPage.waitAddToCardMassageIsPresent();
         Assert.assertTrue(productDetailsPage.checkAddToCard());
@@ -88,7 +87,6 @@ public class CardTests extends BaseTest {
         myAddressesPage.clickSaveButton();
         headPage.clickWomenButton();
         womenPage.clickItemByNameWithAction(itemName);
-        productDetailsPage.waitAddToCardButtonIsPresent();
         productDetailsPage.clickAddToCardItem();
         womenPage.clickCloseWindow();
         headPage.clickCardButton();
@@ -105,20 +103,15 @@ public class CardTests extends BaseTest {
         String secondItemNameTest = "Faded Short Sleeve T-shirts";
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
-        Thread.sleep(2000);
         authenticationPage.clickCreateButtonAccount();
-        Thread.sleep(2000);
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
                 .password(faker.internet().password())
                 .build();
         NewUserModal.fillFormUser(testUser);
-        Thread.sleep(2000);
         creatAccountPage.clickNewAccountButton();
-        Thread.sleep(2000);
         myAccountPage.clickMyAddressButton();
-        Thread.sleep(2000);
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().firstName())
@@ -130,32 +123,19 @@ public class CardTests extends BaseTest {
                 .addressTitle(faker.name().firstName())
                 .build();
         newAddressModal.fillFormAddress(testAddress);
-        Thread.sleep(2000);
         myAddressesPage.clickSaveButton();
-        Thread.sleep(2000);
         Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
-        Thread.sleep(2000);
         womenPage.clickItemByNameWithAction(firstItemNameTest);
-        Thread.sleep(2000);
         productDetailsPage.clickAddToWishListButton();
-        Thread.sleep(2000);
         productDetailsPage.clickCloseButtonAfterAddToWishL();
-        Thread.sleep(2000);
         headPage.clickWomenButton();
-        Thread.sleep(2000);
         womenPage.clickItemByNameWithAction(secondItemNameTest);
-        Thread.sleep(2000);
         productDetailsPage.clickAddToWishListButton();
-        Thread.sleep(2000);
         productDetailsPage.clickCloseButtonAfterAddToWishL();
-        Thread.sleep(2000);
         headPage.clickMyAccountButton();
-        Thread.sleep(2000);
         myAccountPage.clickMyWishListButton();
-        Thread.sleep(2000);
         wishListPage.clickMyWishListButton();
-        Thread.sleep(2000);
         Assert.assertEquals(wishListPage.getSortingListItemName(), Arrays.asList("Faded Short Sleeve T-shirts","Blouse"));
 
     }
