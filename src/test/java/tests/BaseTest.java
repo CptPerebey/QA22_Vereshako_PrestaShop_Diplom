@@ -24,6 +24,7 @@ public abstract class BaseTest {
     public final static String BASE_URL = PropertyReader.getProperty("base_url");
     public final static String BASE_USERNAME = PropertyReader.getProperty("username");
     public final static String BASE_PASSWORD = PropertyReader.getProperty("password");
+    public final static String POSITIVE_REGISTER_MASSAGE="Welcome to your account. Here you can manage all of your personal information and orders.";
     protected static Faker faker = new Faker();
     protected WebDriver driver;
     protected AuthenticationPage authenticationPage;

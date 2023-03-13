@@ -53,14 +53,17 @@ CheckList:
 
 Smoke tests:
 
-mvn clean test
+mvn clean test -DsuiteXmlFile="Smoke.xml" -Dbrowser="chrome" -Dheadless
+="false"
 
 Regression tests: 
 
-mvn clean test -DsuiteXmlFile="Regression.xml" -Dbrowser="chrome"
+mvn clean test -DsuiteXmlFile="Regression.xml" -Dbrowser="chrome" -Dheadless
+="false" -Dbrowser="chrome"
 
 Negative tests:
 
-mvn clean test -DsuiteXmlFile="Negative.xml" -Dbrowser="chrome"
+mvn clean test -DsuiteXmlFile="Negative.xml" -Dbrowser="chrome" -Dheadless
+="false"
 
 Полочить отчет о пройденых тестах: allure serve target/allure-results

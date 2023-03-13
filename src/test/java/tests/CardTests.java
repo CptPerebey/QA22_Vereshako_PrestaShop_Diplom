@@ -4,7 +4,6 @@ import dataModels.Address;
 import dataModels.User;
 import enums.State;
 import modal.NewUserModal;
-import io.qameta.allure.Attachment;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,7 +17,7 @@ public class CardTests extends BaseTest {
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
-        creatAccountPage.waitCreateButtonIsPresent();
+        creatAccountPage.waitLastNameInputIsPresent();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
@@ -63,9 +62,11 @@ public class CardTests extends BaseTest {
     @Test(groups = {"SmokeTests"},retryAnalyzer = RetryAnalyzer.class, description = "Тест на покупку товара")
     public void buyItem()  {
         String itemName = "Blouse";
+        headPage.waitLastElementOnHeadPage();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
+        creatAccountPage.waitLastNameInputIsPresent();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
@@ -99,7 +100,7 @@ public class CardTests extends BaseTest {
 
     }
     @Test(groups = {"Regression"},retryAnalyzer = RetryAnalyzer.class,description = "Тест на добавление товара в список желаемого")
-    public void addItemToWishList() throws InterruptedException {
+    public void addItemToWishList() {
         String firstItemNameTest = "Blouse";
         String secondItemNameTest = "Faded Short Sleeve T-shirts";
         headPage.clickLoginButton();

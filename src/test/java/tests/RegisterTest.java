@@ -16,7 +16,7 @@ public class RegisterTest extends BaseTest{
         creatAccountPage.setLastnameInput("Sobaka");
         creatAccountPage.setPasswordInput("qwe123qwe123");
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
+        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
     }
     @Test(groups = {"SmokeTests"}, description = "Тест на регистрацию")
     public void positiveRegisterTestWithFaker() {
@@ -31,7 +31,7 @@ public class RegisterTest extends BaseTest{
                 .build();
         NewUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
+        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
     }
 
 }

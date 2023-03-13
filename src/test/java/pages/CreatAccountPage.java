@@ -3,7 +3,6 @@ package pages;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -19,6 +18,7 @@ public class CreatAccountPage extends BasePage{
     private final static By PASSWORD_INPUT = By.id("passwd");
     private final static By EMAIL_INPUT = By.id("email");
     private final static By CLICK_NEW_ACCOUNT_BUTTON = By.id("submitAccount");
+    private final static By CREATE_ACCOUNT_MASSAGE= By.xpath("page-subheading");
 
     @Step
     public void setFirstnameInput(String firstname){
@@ -41,7 +41,7 @@ public class CreatAccountPage extends BasePage{
     }
 
     @Step
-    public void waitCreateButtonIsPresent(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(CLICK_NEW_ACCOUNT_BUTTON));
+    public void waitLastNameInputIsPresent(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LASTNAME_INPUT));
     }
 }

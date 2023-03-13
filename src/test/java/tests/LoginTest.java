@@ -12,7 +12,7 @@ public class LoginTest extends BaseTest{
         authenticationPage.setLoginEmailInput(BASE_USERNAME);
         authenticationPage.setLoginPasswordInput(BASE_PASSWORD);
         authenticationPage.clickSignInButton();
-        Assert.assertEquals(MyAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
+        Assert.assertEquals(MyAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
     }
     @Test(dataProvider = "negativeLoginTestData", groups = "Smoke", description = "Негативный тест на авторизацию")
     public void negativeLoginTest(String email,String password, String errorMassage){

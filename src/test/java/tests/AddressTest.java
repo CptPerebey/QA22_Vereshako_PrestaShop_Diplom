@@ -15,6 +15,7 @@ public class AddressTest extends BaseTest{
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
+        creatAccountPage.waitLastNameInputIsPresent();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())
@@ -22,7 +23,7 @@ public class AddressTest extends BaseTest{
                 .build();
         NewUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
+        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
         myAccountPage.clickMyAddressButton();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
