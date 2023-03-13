@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest{
-    @Test(groups = {"Regression"},description = "Тест на проверку авторизации")
+    @Test(groups = {"SmokeTests"},description = "Тест на проверку авторизации")
     public void loginTest(){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(BASE_EMAIL);
@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest{
         authenticationPage.clickSignInButton();
         Assert.assertEquals(MyAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
     }
-    @Test(dataProvider = "negativeLoginTestData", groups = "Smoke", description = "Негативный тест на авторизацию")
+    @Test(dataProvider = "negativeLoginTestData", groups = "SmokeTests", description = "Негативный тест на авторизацию")
     public void negativeLoginTest(String email,String password, String errorMassage){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(email);
