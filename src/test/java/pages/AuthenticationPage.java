@@ -17,6 +17,7 @@ public class AuthenticationPage extends BasePage{
     protected final static By LOGIN_EMAIL_INPUT = By.id("email");
     protected final static By LOGIN_PASSWORD_INPUT= By.id("passwd");
     protected final static By SIGN_IN_BUTTON = By.id("SubmitLogin");
+    protected final static By ERROR_MASSAGE = By.xpath("//*[@class='alert alert-danger']/ol/li ");
     @Step
     public void setLoginEmailInput(String email){
         log.info(String.format("Ввожу email для авторизации %s ", email));
@@ -44,7 +45,10 @@ public class AuthenticationPage extends BasePage{
     }
     @Step
     public void waitForOpenAuthenticationPage() {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(CREATE_ACCOUNT_BUTTON)));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(EMAIL_INPUT)));
+    }
+    public String getErrorMassage(){
+       return driver.findElement(ERROR_MASSAGE).getText();
     }
 
 

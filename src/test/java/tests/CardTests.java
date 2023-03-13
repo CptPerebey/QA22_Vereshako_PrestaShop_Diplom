@@ -18,6 +18,7 @@ public class CardTests extends BaseTest {
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
         authenticationPage.clickCreateButtonAccount();
+        creatAccountPage.waitCreateButtonIsPresent();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
                 .firstName(faker.name().firstName())

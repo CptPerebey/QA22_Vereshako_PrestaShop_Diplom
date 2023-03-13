@@ -56,8 +56,8 @@ public abstract class BaseTest {
             throw new Exception("Incorrect browser name");
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         authenticationPage = new AuthenticationPage(driver);

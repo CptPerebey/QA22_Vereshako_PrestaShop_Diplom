@@ -49,7 +49,7 @@ public class CardPage extends BasePage{
     }
     @Step
     public void waitForProcessedToCheckoutButtonToBeClickable(){
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(PROCESSED_TO_CHECKOUT_BUTTON));
+        wait.until(ExpectedConditions.presenceOfElementLocated(PROCESSED_TO_CHECKOUT_BUTTON));
     }
     @Step
     public void waitForAgreeWithDeliveryButtonIsSelected(){

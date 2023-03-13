@@ -10,11 +10,10 @@ import pages.MyAddressesPage;
 
 public class AddressTest extends BaseTest{
     @Test(groups = {"SmokeTests"},retryAnalyzer = RetryAnalyzer.class, description = "Тест на добавление адреса для аккаунта")
-    public void addNewAddress() throws InterruptedException {
+    public void addNewAddress()  {
         headPage.waitLastElementOnHeadPage();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
-        Thread.sleep(2000);
         authenticationPage.clickCreateButtonAccount();
         User testUser = User.builder()
                 .lastName(faker.name().lastName())
