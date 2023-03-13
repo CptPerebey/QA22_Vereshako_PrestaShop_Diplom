@@ -47,6 +47,7 @@ public class AuthenticationPage extends BasePage{
     public void waitForOpenAuthenticationPage() {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(EMAIL_INPUT)));
     }
+    @Step
     public String getErrorMassage(){
        return driver.findElement(ERROR_MASSAGE).getText();
     }

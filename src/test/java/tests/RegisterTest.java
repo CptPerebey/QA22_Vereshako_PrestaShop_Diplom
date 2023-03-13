@@ -10,11 +10,11 @@ public class RegisterTest extends BaseTest{
     public void positiveRegisterTest()  {
         headPage.loginButtonIsPresent();
         headPage.clickLoginButton();
-        authenticationPage.setEmailForRegister("Sobaka212@mail.ru");
+        authenticationPage.setEmailForRegister(BASE_EMAIL);
         authenticationPage.clickCreateButtonAccount();
-        creatAccountPage.setFirstnameInput("Alexxx");
-        creatAccountPage.setLastnameInput("Sobaka");
-        creatAccountPage.setPasswordInput("qwe123qwe123");
+        creatAccountPage.setFirstnameInput(BASE_USERNAME);
+        creatAccountPage.setLastnameInput(BASE_USER_LAST_NAME);
+        creatAccountPage.setPasswordInput(BASE_PASSWORD);
         creatAccountPage.clickNewAccountButton();
         Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
     }

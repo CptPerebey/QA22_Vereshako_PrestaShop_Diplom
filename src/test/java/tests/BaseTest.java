@@ -1,8 +1,5 @@
 package tests;
 
-import dataModels.Address;
-import dataModels.User;
-import enums.State;
 import modal.BaseModal;
 import modal.NewAddressModal;
 import modal.NewUserModal;
@@ -19,11 +16,13 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
-@Listeners(TestLisener.class)
+@Listeners(TestListener.class)
 public abstract class BaseTest {
     public final static String BASE_URL = PropertyReader.getProperty("base_url");
-    public final static String BASE_USERNAME = PropertyReader.getProperty("username");
+    public final static String BASE_USERNAME = PropertyReader.getProperty("userName");
+    public final static String BASE_USER_LAST_NAME = PropertyReader.getProperty("userLastName");
     public final static String BASE_PASSWORD = PropertyReader.getProperty("password");
+    public final static String BASE_EMAIL = PropertyReader.getProperty("userEmail");
     public final static String POSITIVE_REGISTER_MASSAGE="Welcome to your account. Here you can manage all of your personal information and orders.";
     protected static Faker faker = new Faker();
     protected WebDriver driver;

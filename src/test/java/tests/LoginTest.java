@@ -9,7 +9,7 @@ public class LoginTest extends BaseTest{
     @Test(groups = {"Regression"},description = "Тест на проверку авторизации")
     public void loginTest(){
         headPage.clickLoginButton();
-        authenticationPage.setLoginEmailInput(BASE_USERNAME);
+        authenticationPage.setLoginEmailInput(BASE_EMAIL);
         authenticationPage.setLoginPasswordInput(BASE_PASSWORD);
         authenticationPage.clickSignInButton();
         Assert.assertEquals(MyAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
