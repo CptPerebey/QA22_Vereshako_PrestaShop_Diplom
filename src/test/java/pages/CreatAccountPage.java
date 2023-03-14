@@ -47,10 +47,5 @@ public class CreatAccountPage extends BasePage{
     public void waitLastNameInputIsPresent(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(LASTNAME_INPUT));
     }
-    public String getNameRandom(){
-        return driver.findElement(EMAIL_INPUT).getText();
-    }
-    public String getPasswordRandom(){
-        return driver.findElement(PASSWORD_INPUT).getText();
-    }
+
 }
