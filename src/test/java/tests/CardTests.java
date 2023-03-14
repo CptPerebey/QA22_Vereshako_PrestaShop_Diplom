@@ -25,7 +25,7 @@ public class CardTests extends BaseTest {
                 .build();
         NewUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),"Welcome to your account. Here you can manage all of your personal information and orders.");
+        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
         myAccountPage.clickMyAddressButton();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())

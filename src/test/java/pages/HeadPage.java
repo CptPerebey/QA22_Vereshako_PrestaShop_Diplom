@@ -104,6 +104,9 @@ public class HeadPage extends BasePage{
     public void waitLastElementOnHeadPage(){
         wait.until(ExpectedConditions.presenceOfElementLocated(HOME_SLIDER));
     }
+    public void waitLogOutButton(){
+        wait.until(ExpectedConditions.presenceOfElementLocated(LOGOUT_BUTTON));
+    }
 
 
 }

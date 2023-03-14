@@ -1,5 +1,6 @@
 package tests;
 
+import dataModels.User;
 import modal.BaseModal;
 import modal.NewAddressModal;
 import modal.NewUserModal;
@@ -21,8 +22,8 @@ public abstract class BaseTest {
     public final static String BASE_URL = PropertyReader.getProperty("base_url");
     public final static String BASE_USERNAME = PropertyReader.getProperty("userName");
     public final static String BASE_USER_LAST_NAME = PropertyReader.getProperty("userLastName");
-    public final static String BASE_PASSWORD = PropertyReader.getProperty("password");
-    public final static String BASE_EMAIL = PropertyReader.getProperty("userEmail");
+    public final  String BASE_PASSWORD = faker.internet().password();
+    public final  String BASE_EMAIL = faker.internet().emailAddress();
     public final static String POSITIVE_REGISTER_MASSAGE="Welcome to your account. Here you can manage all of your personal information and orders.";
     protected static Faker faker = new Faker();
     protected WebDriver driver;
@@ -81,6 +82,21 @@ public abstract class BaseTest {
     public void negative() {
         driver.get(BASE_URL);
     }
+    @BeforeMethod(alwaysRun = true)
+    public void registerRandomUser(){
+        headPage.loginButtonIsPresent();
+        headPage.clickLoginButton();
+        authenticationPage.setEmailForRegister(BASE_EMAIL);
+        authenticationPage.clickCreateButtonAccount();
+        User testUser = User.builder()
+                .lastName(faker.name().lastName())
+                .firstName(faker.name().firstName())
+                .password(BASE_PASSWORD)
+                .build();
+        NewUserModal.fillFormUser(testUser);
+        creatAccountPage.clickNewAccountButton();
+    }
+
     @AfterMethod(alwaysRun = true)
     public void cleanUp(){
         driver.manage().deleteAllCookies();
