@@ -82,7 +82,7 @@ public abstract class BaseTest {
     public void negative() {
         driver.get(BASE_URL);
     }
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, onlyForGroups = "loginTest")
     public void registerRandomUser(){
         headPage.loginButtonIsPresent();
         headPage.clickLoginButton();

@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 public class RegisterTest extends BaseTest{
     @Test(groups = {"SmokeTests"}, description = "Тест на регистрацию")
     public void positiveRegisterTestWithFaker() {
-        headPage.clickLogOutButton();
         headPage.loginButtonIsPresent();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());

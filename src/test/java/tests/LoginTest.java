@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest{
                 {"qweqweqw@mail.ru", "222222", "Authentication failed."},
         };
     }
-    @Test(groups = {"SmokeTests"}, description = "Тест на регистрацию")
+    @Test(groups = {"SmokeTests", "loginTest"}, description = "Тест на авторизацию")
     public void loginTestWithRandomData() {
         headPage.clickLogOutButton();
         headPage.clickLoginButton();
