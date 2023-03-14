@@ -1,12 +1,15 @@
 package tests;
 
-import org.testng.annotations.DataProvider;
+import dataModels.User;
+import modal.NewUserModal;
+import org.testng.annotations.*;
 import pages.MyAccountPage;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest{
-    @Test(groups = {"SmokeTests"},description = "Тест на проверку авторизации")
+
+
+    @Test(groups = {"SmokeTests", "loginTest"},description = "Тест на проверку авторизации")
     public void loginTest(){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(BASE_EMAIL);
@@ -31,4 +34,28 @@ public class LoginTest extends BaseTest{
                 {"qweqweqw@mail.ru", "222222", "Authentication failed."},
         };
     }
+    @Test(groups = {"SmokeTests"}, description = "Тест на регистрацию")
+    public void loginTestWithRandomData() {
+        String email= faker.internet().emailAddress();
+        String password  = faker.internet().password();
+        headPage.loginButtonIsPresent();
+        headPage.clickLoginButton();
+        authenticationPage.setEmailForRegister(email);
+        authenticationPage.clickCreateButtonAccount();
+        User testUser = User.builder()
+                .lastName(faker.name().lastName())
+                .firstName(faker.name().firstName())
+                .password(password)
+                .build();
+        NewUserModal.fillFormUser(testUser);
+        creatAccountPage.clickNewAccountButton();
+        headPage.clickLogOutButton();
+        headPage.clickLoginButton();
+        authenticationPage.setLoginEmailInput(email);
+        authenticationPage.setLoginPasswordInput(password);
+        authenticationPage.clickSignInButton();
+        Assert.assertEquals(MyAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
+
+    }
 }
+

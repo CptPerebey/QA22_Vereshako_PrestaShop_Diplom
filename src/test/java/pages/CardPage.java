@@ -47,14 +47,7 @@ public class CardPage extends BasePage{
     public static  String getEndMassage(){
         return driver.findElement(END_MASSAGE).getText();
     }
-    @Step
-    public void waitForProcessedToCheckoutButtonToBeClickable(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(PROCESSED_TO_CHECKOUT_BUTTON));
-    }
-    @Step
-    public void waitForAgreeWithDeliveryButtonIsSelected(){
-        wait.until(ExpectedConditions.elementToBeSelected(AGREE_WITH_DELIVERY_CHECKBOX));
-    }
+
 
 
 }

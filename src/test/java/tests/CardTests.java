@@ -132,7 +132,7 @@ public class CardTests extends BaseTest {
         productDetailsPage.clickAddToWishListButton();
         productDetailsPage.clickCloseButtonAfterAddToWishL();
         headPage.clickWomenButton();
-        womenPage.clickItemByNameWithAction(secondItemNameTest);
+        womenPage.openItemByName(secondItemNameTest);
         productDetailsPage.clickAddToWishListButton();
         productDetailsPage.clickCloseButtonAfterAddToWishL();
         headPage.clickMyAccountButton();
