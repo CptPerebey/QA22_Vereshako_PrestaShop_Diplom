@@ -79,6 +79,11 @@ public class WomenPage extends BasePage{
     public void waitCloseButtonInFilter(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(CLOSE_BUTTON_IN_FILTER));
     }
+    @Step
+    public void openItemByName(String itemName) {
+        WebElement productContainer = getProductContainerByName(itemName);
+        productContainer.findElement(PRODUCT_NAME_SELECTOR).click();
+    }
 
 }
 

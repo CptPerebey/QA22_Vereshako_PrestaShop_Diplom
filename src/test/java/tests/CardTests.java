@@ -41,7 +41,7 @@ public class CardTests extends BaseTest {
         myAddressesPage.clickSaveButton();
         Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
-        womenPage.clickItemByNameWithAction(name);
+        womenPage.openItemByName(name);
         productDetailsPage.clickAddToCardItem();
         productDetailsPage.waitAddToCardMassageIsPresent();
         Assert.assertTrue(productDetailsPage.checkAddToCard());
@@ -88,7 +88,7 @@ public class CardTests extends BaseTest {
         newAddressModal.fillFormAddress(testAddress);
         myAddressesPage.clickSaveButton();
         headPage.clickWomenButton();
-        womenPage.clickItemByNameWithAction(itemName);
+        womenPage.openItemByName(itemName);
         productDetailsPage.clickAddToCardItem();
         womenPage.clickCloseWindow();
         headPage.clickCardButton();
@@ -128,7 +128,7 @@ public class CardTests extends BaseTest {
         myAddressesPage.clickSaveButton();
         Assert.assertTrue(myAddressesPage.successfulCreatedAddressMessage());
         headPage.clickWomenButton();
-        womenPage.clickItemByNameWithAction(firstItemNameTest);
+        womenPage.openItemByName(firstItemNameTest);
         productDetailsPage.clickAddToWishListButton();
         productDetailsPage.clickCloseButtonAfterAddToWishL();
         headPage.clickWomenButton();
