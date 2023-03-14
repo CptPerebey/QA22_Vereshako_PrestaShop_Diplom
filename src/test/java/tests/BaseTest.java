@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 @Listeners(TestListener.class)
 public abstract class BaseTest {
     public final static String BASE_URL = PropertyReader.getProperty("base_url");
-    public final static String BASE_USERNAME = PropertyReader.getProperty("userName");
-    public final static String BASE_USER_LAST_NAME = PropertyReader.getProperty("userLastName");
     public final  String BASE_PASSWORD = faker.internet().password();
     public final  String BASE_EMAIL = faker.internet().emailAddress();
     public final static String POSITIVE_REGISTER_MASSAGE="Welcome to your account. Here you can manage all of your personal information and orders.";
