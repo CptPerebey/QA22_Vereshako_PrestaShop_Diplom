@@ -27,7 +27,7 @@ public abstract class BaseTest {
     protected WebDriver driver;
     protected AuthenticationPage authenticationPage;
     protected HeadPage headPage;
-    protected CreatAccountPage creatAccountPage;
+    protected CreateAccountPage creatAccountPage;
     protected MyAccountPage myAccountPage;
     protected WomenPage womenPage;
     protected ProductDetailsPage productDetailsPage;
@@ -61,7 +61,7 @@ public abstract class BaseTest {
 
         authenticationPage = new AuthenticationPage(driver);
        headPage = new HeadPage(driver);
-       creatAccountPage = new CreatAccountPage(driver);
+       creatAccountPage = new CreateAccountPage(driver);
        myAccountPage = new MyAccountPage(driver);
        womenPage = new WomenPage(driver);
        productDetailsPage = new ProductDetailsPage(driver);
@@ -91,7 +91,7 @@ public abstract class BaseTest {
                 .firstName(faker.name().firstName())
                 .password(BASE_PASSWORD)
                 .build();
-        NewUserModal.fillFormUser(testUser);
+        newUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
     }
 

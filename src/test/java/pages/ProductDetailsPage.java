@@ -42,9 +42,5 @@ public class ProductDetailsPage extends BasePage{
         log.info("Кликаю по кнопке Кликаю по кнопке закрыть после добавления товара в список желаемого");
         driver.findElement(CLOSE_MASSAGE_ADD_TO_WISHLIST).click();
     }
-    @Step
-    public void waitAddToCardButtonIsPresent(){
-       wait.until(ExpectedConditions.presenceOfElementLocated(ADD_TO_CARD_ITEM_BUTTON));
-    }
 
 }

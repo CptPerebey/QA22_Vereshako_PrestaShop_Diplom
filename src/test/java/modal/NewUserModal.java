@@ -9,7 +9,7 @@ public class NewUserModal extends BaseModal {
     public NewUserModal(WebDriver driver) {
         super(driver);
     }
-    public static void fillFormUser(User user) {
+    public void fillFormUser(User user) {
         log.info(String.format("Заполняю поля для создания аккаунта %s",user));
         new Input(driver, "customer_firstname").setValue(user.getFirstName());
         new Input(driver, "customer_lastname").setValue(user.getLastName());

@@ -21,7 +21,7 @@ public class AddressTest extends BaseTest{
                 .firstName(faker.name().firstName())
                 .password(faker.internet().password())
                 .build();
-        NewUserModal.fillFormUser(testUser);
+        newUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
         Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
         myAccountPage.clickMyAddressButton();
