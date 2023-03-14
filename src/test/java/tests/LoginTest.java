@@ -9,7 +9,7 @@ import org.testng.Assert;
 public class LoginTest extends BaseTest{
 
 
-    @Test(groups = {"SmokeTests", "loginTest"},description = "Тест на проверку авторизации")
+    @Test(description = "Тест на проверку авторизации")
     public void loginTest(){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(BASE_EMAIL);
