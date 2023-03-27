@@ -1,4 +1,5 @@
 package dataModels;
+
 import enums.State;
 import lombok.Builder;
 import lombok.Data;

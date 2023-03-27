@@ -17,12 +17,13 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
+
 @Listeners(TestListener.class)
 public abstract class BaseTest {
     public final static String BASE_URL = PropertyReader.getProperty("base_url");
-    public final  String BASE_PASSWORD = faker.internet().password();
-    public final  String BASE_EMAIL = faker.internet().emailAddress();
-    public final static String POSITIVE_REGISTER_MASSAGE="Welcome to your account. Here you can manage all of your personal information and orders.";
+    public final String BASE_PASSWORD = faker.internet().password();
+    public final String BASE_EMAIL = faker.internet().emailAddress();
+    public final static String POSITIVE_REGISTER_MASSAGE = "Welcome to your account. Here you can manage all of your personal information and orders.";
     protected static Faker faker = new Faker();
     protected WebDriver driver;
     protected AuthenticationPage authenticationPage;
@@ -42,13 +43,14 @@ public abstract class BaseTest {
     public void setUp(ITestContext testContext) throws Exception {
         String browserName = System.getProperty("browser", "chrome");
         String headless = System.getProperty("headless", "false");
-        if(browserName.equals("chrome")) {
+        if (browserName.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
-            if(headless.equals("true")) {
-                options.addArguments("--headless");}
+            if (headless.equals("true")) {
+                options.addArguments("--headless");
+            }
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(options);
-        } else if(browserName.equals("fireFox")) {
+        } else if (browserName.equals("fireFox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         } else {
@@ -60,17 +62,17 @@ public abstract class BaseTest {
 
 
         authenticationPage = new AuthenticationPage(driver);
-       headPage = new HeadPage(driver);
-       creatAccountPage = new CreateAccountPage(driver);
-       myAccountPage = new MyAccountPage(driver);
-       womenPage = new WomenPage(driver);
-       productDetailsPage = new ProductDetailsPage(driver);
-       cardPage = new CardPage(driver);
-       baseModal = new BaseModal(driver);
-       wishListPage = new WishListPage(driver);
-       newAddressModal = new NewAddressModal(driver);
-       newUserModal = new NewUserModal(driver);
-       myAddressesPage = new MyAddressesPage(driver);
+        headPage = new HeadPage(driver);
+        creatAccountPage = new CreateAccountPage(driver);
+        myAccountPage = new MyAccountPage(driver);
+        womenPage = new WomenPage(driver);
+        productDetailsPage = new ProductDetailsPage(driver);
+        cardPage = new CardPage(driver);
+        baseModal = new BaseModal(driver);
+        wishListPage = new WishListPage(driver);
+        newAddressModal = new NewAddressModal(driver);
+        newUserModal = new NewUserModal(driver);
+        myAddressesPage = new MyAddressesPage(driver);
         testContext.setAttribute("driver", driver);
 
     }
@@ -80,8 +82,9 @@ public abstract class BaseTest {
     public void negative() {
         driver.get(BASE_URL);
     }
+
     @BeforeMethod(alwaysRun = true, onlyForGroups = "loginTest")
-    public void registerRandomUser(){
+    public void registerRandomUser() {
         headPage.loginButtonIsPresent();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(BASE_EMAIL);
@@ -96,7 +99,7 @@ public abstract class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void cleanUp(){
+    public void cleanUp() {
         driver.manage().deleteAllCookies();
         ((JavascriptExecutor) driver).executeScript("window.localStorage.clear();");
         ((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");

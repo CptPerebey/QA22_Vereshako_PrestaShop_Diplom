@@ -4,8 +4,9 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 @Log4j2
-public class MyAccountPage extends BasePage{
+public class MyAccountPage extends BasePage {
     public MyAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -16,16 +17,18 @@ public class MyAccountPage extends BasePage{
     private static final By ADDRESS_BUTTON = By.cssSelector(".icon-building");
 
     @Step
-    public  String getAccountMassage(){
-      return driver.findElement(MY_ACCOUNT_MASSAGE).getText();
+    public String getAccountMassage() {
+        return driver.findElement(MY_ACCOUNT_MASSAGE).getText();
     }
+
     @Step
-    public void clickMyWishListButton(){
+    public void clickMyWishListButton() {
         log.info("Кликаю по кнопке мой список желаемого");
         driver.findElement(MY_WISHLIST_BUTTON).click();
     }
+
     @Step
-    public void clickMyAddressButton(){
+    public void clickMyAddressButton() {
         log.info("Кликаю по кнопке мой адрес");
         driver.findElement(ADDRESS_BUTTON).click();
     }

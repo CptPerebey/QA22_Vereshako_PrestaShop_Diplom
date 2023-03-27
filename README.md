@@ -56,7 +56,7 @@ Smoke tests:
 mvn clean test -DsuiteXmlFile="Smoke.xml" -Dbrowser="chrome" -Dheadless
 ="false"
 
-Regression tests: 
+Regression tests:
 
 mvn clean test -DsuiteXmlFile="Regression.xml" -Dbrowser="chrome" -Dheadless
 ="false" -Dbrowser="chrome"

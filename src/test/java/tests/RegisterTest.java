@@ -5,7 +5,7 @@ import modal.NewUserModal;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class RegisterTest extends BaseTest{
+public class RegisterTest extends BaseTest {
     @Test(groups = {"SmokeTests"}, description = "Тест на регистрацию")
     public void positiveRegisterTestWithFaker() {
         headPage.loginButtonIsPresent();
@@ -19,7 +19,7 @@ public class RegisterTest extends BaseTest{
                 .build();
         newUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
+        Assert.assertEquals(myAccountPage.getAccountMassage(), POSITIVE_REGISTER_MASSAGE);
     }
 
 }
