@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 
 public class CardTests extends BaseTest {
-    @Test(groups = {"SmokeTests"},description = "Тест на добавление товара в корзину")
+    @Test(groups = {"SmokeTests"}, description = "Тест на добавление товара в корзину")
     public void addToCardTest() {
         String name = "Faded Short Sleeve T-shirts";
         headPage.waitLastElementOnHeadPage();
@@ -25,7 +25,7 @@ public class CardTests extends BaseTest {
                 .build();
         newUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
+        Assert.assertEquals(myAccountPage.getAccountMassage(), POSITIVE_REGISTER_MASSAGE);
         myAccountPage.clickMyAddressButton();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
@@ -46,7 +46,8 @@ public class CardTests extends BaseTest {
         productDetailsPage.waitAddToCardMassageIsPresent();
         Assert.assertTrue(productDetailsPage.checkAddToCard());
     }
-    @Test(groups = {"Negative"},description = "Тест падает из-за бага в корзине")
+
+    @Test(groups = {"Negative"}, description = "Тест падает из-за бага в корзине")
     public void deleteItemFromCard() {
         String name = "Faded Short Sleeve T-shirts";
         headPage.clickWomenButton();
@@ -59,8 +60,8 @@ public class CardTests extends BaseTest {
 
     }
 
-    @Test(groups = {"SmokeTests"},retryAnalyzer = RetryAnalyzer.class, description = "Тест на покупку товара")
-    public void buyItem()  {
+    @Test(groups = {"SmokeTests"}, retryAnalyzer = RetryAnalyzer.class, description = "Тест на покупку товара")
+    public void buyItem() {
         String itemName = "Blouse";
         headPage.waitLastElementOnHeadPage();
         headPage.clickLoginButton();
@@ -96,23 +97,15 @@ public class CardTests extends BaseTest {
         cardPage.clickProcessedToCheckoutButtonOnAddressStep();
         cardPage.clickAgreeWithDeliveryButton();
         cardPage.clickProcessedToCheckoutButton();
-        Assert.assertEquals(cardPage.getEndMassage(),"No payment modules have been installed.");
+        Assert.assertEquals(cardPage.getEndMassage(), "No payment modules have been installed.");
 
     }
-    @Test(groups = {"Regression"},retryAnalyzer = RetryAnalyzer.class,description = "Тест на добавление товара в список желаемого")
+
+    @Test(groups = {"Regression", "loginTest"}, retryAnalyzer = RetryAnalyzer.class, description = "Тест на добавление товара в список желаемого")
     public void addItemToWishList() {
         String firstItemNameTest = "Blouse";
         String secondItemNameTest = "Faded Short Sleeve T-shirts";
-        headPage.clickLoginButton();
-        authenticationPage.setEmailForRegister(faker.internet().emailAddress());
-        authenticationPage.clickCreateButtonAccount();
-        User testUser = User.builder()
-                .lastName(faker.name().lastName())
-                .firstName(faker.name().firstName())
-                .password(faker.internet().password())
-                .build();
-        newUserModal.fillFormUser(testUser);
-        creatAccountPage.clickNewAccountButton();
+        headPage.clickMyAccountButton();
         myAccountPage.clickMyAddressButton();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())
@@ -138,7 +131,7 @@ public class CardTests extends BaseTest {
         headPage.clickMyAccountButton();
         myAccountPage.clickMyWishListButton();
         wishListPage.clickMyWishListButton();
-        Assert.assertEquals(wishListPage.getSortingListItemName(), Arrays.asList("Faded Short Sleeve T-shirts","Blouse"));
+        Assert.assertEquals(wishListPage.getSortingListItemName(), Arrays.asList("Faded Short Sleeve T-shirts", "Blouse"));
 
     }
 }

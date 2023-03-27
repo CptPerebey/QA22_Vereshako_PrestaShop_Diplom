@@ -8,6 +8,6 @@ public enum SelectOptionOnHeadPage {
     SelectOptionOnHeadPage(final String name) {
         this.optional = name;
     }
-    
+
 
 }

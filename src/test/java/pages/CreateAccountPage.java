@@ -7,23 +7,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Log4j2
-public class CreateAccountPage extends BasePage{
+public class CreateAccountPage extends BasePage {
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
+
     private final static By LASTNAME_INPUT = By.id("customer_lastname");
     private final static By CLICK_NEW_ACCOUNT_BUTTON = By.id("submitAccount");
 
 
     @Step
 
-    public void clickNewAccountButton(){
+    public void clickNewAccountButton() {
         log.info(String.format("Кликаю по кнопке Создать аккаун"));
         driver.findElement(CLICK_NEW_ACCOUNT_BUTTON).click();
     }
 
     @Step
-    public void waitLastNameInputIsPresent(){
+    public void waitLastNameInputIsPresent() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LASTNAME_INPUT));
     }
 

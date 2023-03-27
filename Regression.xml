@@ -4,7 +4,7 @@
     <test name="All Regression Test">
         <groups>
             <run>
-                <include name="Regression" />
+                <include name="Regression"/>
             </run>
         </groups>
         <packages>

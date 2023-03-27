@@ -8,9 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.MyAddressesPage;
 
-public class AddressTest extends BaseTest{
-    @Test(groups = {"SmokeTests"},retryAnalyzer = RetryAnalyzer.class, description = "Тест на добавление адреса для аккаунта")
-    public void addNewAddress()  {
+public class AddressTest extends BaseTest {
+    @Test(groups = {"SmokeTests"}, retryAnalyzer = RetryAnalyzer.class, description = "Тест на добавление адреса для аккаунта")
+    public void addNewAddress() {
         headPage.waitLastElementOnHeadPage();
         headPage.clickLoginButton();
         authenticationPage.setEmailForRegister(faker.internet().emailAddress());
@@ -23,7 +23,7 @@ public class AddressTest extends BaseTest{
                 .build();
         newUserModal.fillFormUser(testUser);
         creatAccountPage.clickNewAccountButton();
-        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
+        Assert.assertEquals(myAccountPage.getAccountMassage(), POSITIVE_REGISTER_MASSAGE);
         myAccountPage.clickMyAddressButton();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())

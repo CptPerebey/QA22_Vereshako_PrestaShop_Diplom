@@ -9,8 +9,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Log4j2
-public class WishListPage extends BasePage{
+public class WishListPage extends BasePage {
     protected static final By MY_WISHLIST = By.xpath("//a[@href='javascript:;' and contains(@onclick, 'javascript:WishlistManage')]");
     private static final By ITEM_ON_WISHLIST_LINK = By.xpath("//*[@class='product-name']/small/ancestor::p");
 
@@ -18,19 +19,19 @@ public class WishListPage extends BasePage{
     public WishListPage(WebDriver driver) {
         super(driver);
     }
+
     @Step
-    public void clickMyWishListButton(){
+    public void clickMyWishListButton() {
         log.info("Кликаю по кнопке Мой список с помощью JS что бы открылся список с добавлеными товарами");
         jsClick(driver.findElement(MY_WISHLIST));
     }
+
     @Step
-    public List<String> getSortingListItemName (){
+    public List<String> getSortingListItemName() {
         List<WebElement> listItemName = driver.findElements(ITEM_ON_WISHLIST_LINK);
         List<String> allListItemName = listItemName.stream().map(WebElement::getText).map(MyUtils::getItemName).collect(Collectors.toList());
         return allListItemName;
     }
-
-
 
 
 }

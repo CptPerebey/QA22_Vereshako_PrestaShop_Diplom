@@ -6,18 +6,19 @@ import org.testng.annotations.*;
 import pages.MyAccountPage;
 import org.testng.Assert;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
 
-    @Test(dataProvider = "negativeLoginTestData", groups = "", description = "Негативный тест на авторизацию")
-    public void negativeLoginTest(String email,String password, String errorMassage){
+    @Test(dataProvider = "negativeLoginTestData", groups = "Regression", description = "Негативный тест на авторизацию")
+    public void negativeLoginTest(String email, String password, String errorMassage) {
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(email);
         authenticationPage.setLoginPasswordInput(password);
         authenticationPage.clickSignInButton();
-        Assert.assertEquals(authenticationPage.getErrorMassage(),errorMassage);
+        Assert.assertEquals(authenticationPage.getErrorMassage(), errorMassage);
 
     }
+
     @DataProvider
     public Object[][] negativeLoginTestData() {
         return new Object[][]{
@@ -26,6 +27,7 @@ public class LoginTest extends BaseTest{
                 {"qweqweqw@mail.ru", "222222", "Authentication failed."},
         };
     }
+
     @Test(groups = {"SmokeTests", "loginTest"}, description = "Тест на авторизацию")
     public void loginTestWithRandomData() {
         headPage.clickLogOutButton();
@@ -33,7 +35,7 @@ public class LoginTest extends BaseTest{
         authenticationPage.setLoginEmailInput(BASE_EMAIL);
         authenticationPage.setLoginPasswordInput(BASE_PASSWORD);
         authenticationPage.clickSignInButton();
-        Assert.assertEquals(MyAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
+        Assert.assertEquals(myAccountPage.getAccountMassage(), POSITIVE_REGISTER_MASSAGE);
 
     }
 }

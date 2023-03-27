@@ -6,8 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
+
 @Log4j2
-public class Input extends BaseElement{
+public class Input extends BaseElement {
     public Input(WebDriver driver, String label) {
         super(driver, label);
     }

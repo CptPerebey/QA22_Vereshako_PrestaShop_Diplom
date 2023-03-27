@@ -8,13 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Log4j2
-public class NewAddressModal extends BaseModal{
+public class NewAddressModal extends BaseModal {
     public NewAddressModal(WebDriver driver) {
         super(driver);
     }
 
     public void fillFormAddress(Address address) {
-        log.info(String.format("Заполняю поля для создания адреса %s",address));
+        log.info(String.format("Заполняю поля для создания адреса %s", address));
         new Input(driver, "firstname").setValue(address.getFirstName());
         new Input(driver, "lastname").setValue(address.getLastName());
         new Input(driver, "address1").setValue(address.getAddress());
