@@ -44,7 +44,7 @@ public class CardPage extends BasePage{
         driver.findElement(PROCESSED_TO_CHECKOUT_BUTTON_ON_ADDRESS_STEP).click();
     }
     @Step
-    public static  String getEndMassage(){
+    public  String getEndMassage(){
         return driver.findElement(END_MASSAGE).getText();
     }
 

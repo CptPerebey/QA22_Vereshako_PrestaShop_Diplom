@@ -16,7 +16,7 @@ public class MyAccountPage extends BasePage{
     private static final By ADDRESS_BUTTON = By.cssSelector(".icon-building");
 
     @Step
-    public static String getAccountMassage(){
+    public  String getAccountMassage(){
       return driver.findElement(MY_ACCOUNT_MASSAGE).getText();
     }
     @Step

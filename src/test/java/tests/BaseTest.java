@@ -102,6 +102,7 @@ public abstract class BaseTest {
         ((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");
     }
 
+
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();

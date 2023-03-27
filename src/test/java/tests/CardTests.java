@@ -99,20 +99,11 @@ public class CardTests extends BaseTest {
         Assert.assertEquals(cardPage.getEndMassage(),"No payment modules have been installed.");
 
     }
-    @Test(groups = {"Regression"},retryAnalyzer = RetryAnalyzer.class,description = "Тест на добавление товара в список желаемого")
+    @Test(groups = {"Regression", "loginTest"},retryAnalyzer = RetryAnalyzer.class,description = "Тест на добавление товара в список желаемого")
     public void addItemToWishList() {
         String firstItemNameTest = "Blouse";
         String secondItemNameTest = "Faded Short Sleeve T-shirts";
-        headPage.clickLoginButton();
-        authenticationPage.setEmailForRegister(faker.internet().emailAddress());
-        authenticationPage.clickCreateButtonAccount();
-        User testUser = User.builder()
-                .lastName(faker.name().lastName())
-                .firstName(faker.name().firstName())
-                .password(faker.internet().password())
-                .build();
-        newUserModal.fillFormUser(testUser);
-        creatAccountPage.clickNewAccountButton();
+        headPage.clickMyAccountButton();
         myAccountPage.clickMyAddressButton();
         Address testAddress = Address.builder()
                 .firstName(faker.name().firstName())

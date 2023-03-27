@@ -9,7 +9,7 @@ import org.testng.Assert;
 public class LoginTest extends BaseTest{
 
 
-    @Test(dataProvider = "negativeLoginTestData", groups = "", description = "Негативный тест на авторизацию")
+    @Test(dataProvider = "negativeLoginTestData", groups = "Regression", description = "Негативный тест на авторизацию")
     public void negativeLoginTest(String email,String password, String errorMassage){
         headPage.clickLoginButton();
         authenticationPage.setLoginEmailInput(email);
@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest{
         authenticationPage.setLoginEmailInput(BASE_EMAIL);
         authenticationPage.setLoginPasswordInput(BASE_PASSWORD);
         authenticationPage.clickSignInButton();
-        Assert.assertEquals(MyAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
+        Assert.assertEquals(myAccountPage.getAccountMassage(),POSITIVE_REGISTER_MASSAGE);
 
     }
 }
